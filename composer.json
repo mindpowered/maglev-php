@@ -1,0 +1,14 @@
+{
+	"name": "mindpowered/maglev",
+	"version": "0.4.12",
+	"description": "maglev",
+	"license": "proprietary",
+	"autoload": {
+		"psr-4": {
+			"haxe\\": "lib/haxe/",
+			"maglev\\": "lib/maglev/",
+			"php\\": "lib/php/",
+			"": "lib/"
+		}
+	}
+}
