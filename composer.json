@@ -1,6 +1,6 @@
 {
 	"name": "mindpowered/maglev",
-	"version": "0.4.15",
+	"version": "0.4.16",
 	"description": "maglev",
 	"license": "proprietary",
 	"autoload": {
