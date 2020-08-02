@@ -1,6 +1,6 @@
 {
     "name": "mindpowered/maglev",
-    "version": "0.4.29",
+    "version": "0.4.30",
     "description": "maglev",
     "license": "CPAL-1.0",
     "autoload": {
