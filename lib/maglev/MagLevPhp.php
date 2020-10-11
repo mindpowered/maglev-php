@@ -183,17 +183,17 @@ class MagLevPhp {
 			#/src/maglev/MagLevPhp.hx:80: characters 7-13
 			$result = $arr->arr;
 		} else if (($data instanceof StringMap) || ($data instanceof IntMap) || ($data instanceof EnumValueMap) || ($data instanceof ObjectMap)) {
-			#/src/maglev/MagLevPhp.hx:86: characters 7-44
+			#/src/maglev/MagLevPhp.hx:86: characters 7-61
 			$original = $data;
 			#/src/maglev/MagLevPhp.hx:87: characters 7-58
 			$hash = new StringMap();
 			#/src/maglev/MagLevPhp.hx:88: characters 19-34
-			$item = new NativeIndexedArrayIterator(array_values(array_map("strval", array_keys($original->data))));
+			$item = $original->keys();
 			while ($item->hasNext()) {
 				#/src/maglev/MagLevPhp.hx:88: lines 88-90
 				$item1 = $item->next();
-				#/src/maglev/MagLevPhp.hx:89: characters 9-53
-				$value = $this->convertToPhp(($original->data[$item1] ?? null));
+				#/src/maglev/MagLevPhp.hx:89: characters 9-57
+				$value = $this->convertToPhp($original->get($item1));
 				$hash->data[$item1] = $value;
 			}
 			#/src/maglev/MagLevPhp.hx:91: characters 7-13
