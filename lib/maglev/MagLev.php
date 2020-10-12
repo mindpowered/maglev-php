@@ -32,7 +32,7 @@ class MagLev {
 	 */
 	public static function clean ($arg) {
 		#/src/maglev/MagLev.hx:92: lines 92-104
-		if (\Reflect::isObject($arg) && !($arg instanceof IMap)) {
+		if (!is_string($arg) && \Reflect::isObject($arg) && !($arg instanceof IMap)) {
 			#/src/maglev/MagLev.hx:94: characters 13-44
 			$keys = \Reflect::fields($arg);
 			#/src/maglev/MagLev.hx:95: characters 13-61
