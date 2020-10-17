@@ -20,7 +20,7 @@ use \php\_NativeIndexedArray\NativeIndexedArrayIterator;
  */
 class MagLevPhp {
 	/**
-	 * @var MagLev
+	 * @var MagLevOld
 	 */
 	public $maglev;
 
@@ -32,12 +32,12 @@ class MagLevPhp {
 	public static function getInstance ($phpKey) {
 		#/src/maglev/MagLevPhp.hx:25: characters 5-43
 		$key = Boot::typedCast(Boot::getClass('String'), $phpKey);
-		#/src/maglev/MagLevPhp.hx:26: characters 5-50
-		return new MagLevPhp(MagLev::getInstance($key));
+		#/src/maglev/MagLevPhp.hx:26: characters 5-53
+		return new MagLevPhp(MagLevOld::getInstance($key));
 	}
 
 	/**
-	 * @param MagLev $maglev
+	 * @param MagLevOld $maglev
 	 * 
 	 * @return void
 	 */

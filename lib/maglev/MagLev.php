@@ -6,7 +6,6 @@
 namespace maglev;
 
 use \php\Boot;
-use \haxe\Exception;
 use \haxe\ds\StringMap;
 
 class MagLev {
@@ -30,14 +29,14 @@ class MagLev {
 	 * @return MagLev
 	 */
 	public static function getInstance ($key) {
-		#/src/maglev/MagLev.hx:48: lines 48-50
+		#/src/maglev/MagLev.hx:49: lines 49-51
 		if (!array_key_exists($key, MagLev::$_instances->data)) {
-			#/src/maglev/MagLev.hx:49: characters 5-35
+			#/src/maglev/MagLev.hx:50: characters 13-43
 			$this1 = MagLev::$_instances;
 			$v = new MagLev();
 			$this1->data[$key] = $v;
 		}
-		#/src/maglev/MagLev.hx:51: characters 10-25
+		#/src/maglev/MagLev.hx:52: characters 16-31
 		return (MagLev::$_instances->data[$key] ?? null);
 	}
 
@@ -45,80 +44,86 @@ class MagLev {
 	 * @return void
 	 */
 	public function __construct () {
-		#/src/maglev/MagLev.hx:42: characters 63-112
+		#/src/maglev/MagLev.hx:43: characters 56-95
 		$this->_listeners = new StringMap();
-		#/src/maglev/MagLev.hx:41: characters 45-78
+		#/src/maglev/MagLev.hx:42: characters 47-79
 		$this->_methods = new StringMap();
 	}
 
 	/**
 	 * @param string $method
-	 * @param \Array_hx $args
+	 * @param MagLevArray $args
 	 * 
-	 * @return mixed
+	 * @return MagLevResult
 	 */
 	public function call ($method, $args) {
-		#/src/maglev/MagLev.hx:59: lines 59-63
+		#/src/maglev/MagLev.hx:60: lines 60-65
 		if (array_key_exists($method, $this->_methods->data)) {
-			#/src/maglev/MagLev.hx:60: characters 13-42
-			return ($this->_methods->data[$method] ?? null)($args);
+			#/src/maglev/MagLev.hx:61: characters 13-47
+			return ($this->_methods->data[$method] ?? null)->call($args);
 		} else {
-			#/src/maglev/MagLev.hx:62: characters 4-9
-			throw Exception::thrown("Method '" . ($method??'null') . "' not registered");
+			#/src/maglev/MagLev.hx:63: characters 51-70
+			$err = new MagLevNumber(0);
+			#/src/maglev/MagLev.hx:63: characters 72-130
+			$err1 = new MagLevString("Method '" . ($method??'null') . "' not registered");
+			#/src/maglev/MagLev.hx:63: characters 13-150
+			$err2 = new MagLevError($err, $err1, new MagLevNull());
+			#/src/maglev/MagLev.hx:64: characters 13-47
+			return MagLevResult::fromError($err2);
 		}
 	}
 
 	/**
 	 * @param string $event
-	 * @param \Array_hx $args
+	 * @param MagLevArray $args
 	 * 
 	 * @return void
 	 */
 	public function emit ($event, $args) {
-		#/src/maglev/MagLev.hx:75: lines 75-80
+		#/src/maglev/MagLev.hx:76: lines 76-81
 		if (array_key_exists($event, $this->_listeners->data)) {
-			#/src/maglev/MagLev.hx:76: characters 4-38
+			#/src/maglev/MagLev.hx:77: characters 13-47
 			$listeners = ($this->_listeners->data[$event] ?? null);
-			#/src/maglev/MagLev.hx:77: lines 77-79
+			#/src/maglev/MagLev.hx:78: lines 78-80
 			$_g = 0;
 			while ($_g < $listeners->length) {
-				#/src/maglev/MagLev.hx:77: characters 8-16
+				#/src/maglev/MagLev.hx:78: characters 17-25
 				$listener = ($listeners->arr[$_g] ?? null);
-				#/src/maglev/MagLev.hx:77: lines 77-79
+				#/src/maglev/MagLev.hx:78: lines 78-80
 				++$_g;
-				#/src/maglev/MagLev.hx:78: characters 5-26
-				$listener($event, $args);
+				#/src/maglev/MagLev.hx:79: characters 17-36
+				$listener->call($args);
 			}
 		}
 	}
 
 	/**
 	 * @param string $event
-	 * @param \Closure $callback
+	 * @param MagLevFunction $callback
 	 * 
 	 * @return void
 	 */
 	public function listen ($event, $callback) {
-		#/src/maglev/MagLev.hx:68: lines 68-70
+		#/src/maglev/MagLev.hx:69: lines 69-71
 		if (!array_key_exists($event, $this->_listeners->data)) {
-			#/src/maglev/MagLev.hx:69: characters 4-61
+			#/src/maglev/MagLev.hx:70: characters 13-60
 			$this1 = $this->_listeners;
 			$v = new \Array_hx();
 			$this1->data[$event] = $v;
 		}
-		#/src/maglev/MagLev.hx:71: characters 3-35
+		#/src/maglev/MagLev.hx:72: characters 9-41
 		$_this = ($this->_listeners->data[$event] ?? null);
 		$_this->arr[$_this->length++] = $callback;
 	}
 
 	/**
 	 * @param string $method
-	 * @param \Closure $callback
+	 * @param MagLevFunction $callback
 	 * 
 	 * @return void
 	 */
 	public function register ($method, $callback) {
-		#/src/maglev/MagLev.hx:55: characters 3-30
+		#/src/maglev/MagLev.hx:56: characters 9-36
 		$this->_methods->data[$method] = $callback;
 	}
 
