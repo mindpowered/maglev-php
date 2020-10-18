@@ -104,8 +104,8 @@ class MagLevOld {
 			$i = 0;
 			#/src/maglev/MagLevOld.hx:125: lines 125-128
 			while ($i < $y->size()) {
-				#/src/maglev/MagLevOld.hx:126: characters 17-35
-				$x1 = $y->get($i);
+				#/src/maglev/MagLevOld.hx:126: characters 17-50
+				$x1 = $this->convertToHaxe($y->get($i));
 				$arr->arr[$arr->length++] = $x1;
 				#/src/maglev/MagLevOld.hx:127: characters 17-20
 				++$i;
@@ -125,8 +125,8 @@ class MagLevOld {
 			while ($i < $keys->size()) {
 				#/src/maglev/MagLevOld.hx:137: characters 17-78
 				$key = (Boot::typedCast(Boot::getClass(MagLevString::class), $keys->get($i)))->getString();
-				#/src/maglev/MagLevOld.hx:138: characters 17-41
-				$value = $y->get($key);
+				#/src/maglev/MagLevOld.hx:138: characters 17-56
+				$value = $this->convertToHaxe($y->get($key));
 				$map->data[$key] = $value;
 				#/src/maglev/MagLevOld.hx:139: characters 17-20
 				++$i;
