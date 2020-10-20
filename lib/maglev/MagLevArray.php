@@ -6,6 +6,7 @@
 namespace maglev;
 
 use \php\Boot;
+use \maglev\_MagLevTypes\MagLevType_Impl_;
 
 class MagLevArray extends MagLevAny {
 	/**
@@ -17,7 +18,7 @@ class MagLevArray extends MagLevAny {
 	 * @return MagLevArray
 	 */
 	public static function create () {
-		#/src/maglev/MagLevTypes.hx:300: characters 9-33
+		#/src/maglev/MagLevTypes.hx:305: characters 9-33
 		return new MagLevArray();
 	}
 
@@ -25,9 +26,9 @@ class MagLevArray extends MagLevAny {
 	 * @return void
 	 */
 	public function __construct () {
-		#/src/maglev/MagLevTypes.hx:303: characters 9-40
+		#/src/maglev/MagLevTypes.hx:308: characters 9-40
 		$this->values = new \Array_hx();
-		#/src/maglev/MagLevTypes.hx:304: characters 9-16
+		#/src/maglev/MagLevTypes.hx:309: characters 9-16
 		parent::__construct();
 	}
 
@@ -37,16 +38,16 @@ class MagLevArray extends MagLevAny {
 	 * @return MagLevAny
 	 */
 	public function get ($i) {
-		#/src/maglev/MagLevTypes.hx:326: characters 9-42
+		#/src/maglev/MagLevTypes.hx:331: characters 9-42
 		return MagLevNull::wrap(($this->values->arr[$i] ?? null));
 	}
 
 	/**
-	 * @return MagLevType
+	 * @return int
 	 */
 	public function getType () {
-		#/src/maglev/MagLevTypes.hx:332: characters 9-32
-		return MagLevType::MagLevType_Array();
+		#/src/maglev/MagLevTypes.hx:337: characters 9-43
+		return MagLevType_Impl_::$MagLevType_Array;
 	}
 
 	/**
@@ -55,52 +56,52 @@ class MagLevArray extends MagLevAny {
 	 * @return bool
 	 */
 	public function isEqual ($other) {
-		#/src/maglev/MagLevTypes.hx:335: lines 335-356
+		#/src/maglev/MagLevTypes.hx:340: lines 340-361
 		if ($other->getType() === $this->getType()) {
-			#/src/maglev/MagLevTypes.hx:336: characters 13-46
+			#/src/maglev/MagLevTypes.hx:341: characters 13-46
 			$o = Boot::typedCast(Boot::getClass(MagLevArray::class), $other);
-			#/src/maglev/MagLevTypes.hx:337: lines 337-352
+			#/src/maglev/MagLevTypes.hx:342: lines 342-357
 			if ($this->size() === $o->size()) {
-				#/src/maglev/MagLevTypes.hx:338: characters 17-64
+				#/src/maglev/MagLevTypes.hx:343: characters 17-64
 				$arr = Boot::typedCast(Boot::getClass(MagLevArray::class), $other);
-				#/src/maglev/MagLevTypes.hx:339: lines 339-347
+				#/src/maglev/MagLevTypes.hx:344: lines 344-352
 				$_g = 0;
 				$_g1 = $this->values;
 				while ($_g < $_g1->length) {
-					#/src/maglev/MagLevTypes.hx:339: characters 22-26
+					#/src/maglev/MagLevTypes.hx:344: characters 22-26
 					$item = ($_g1->arr[$_g] ?? null);
-					#/src/maglev/MagLevTypes.hx:339: lines 339-347
+					#/src/maglev/MagLevTypes.hx:344: lines 344-352
 					++$_g;
-					#/src/maglev/MagLevTypes.hx:340: characters 21-44
+					#/src/maglev/MagLevTypes.hx:345: characters 21-44
 					$found = false;
-					#/src/maglev/MagLevTypes.hx:341: lines 341-345
+					#/src/maglev/MagLevTypes.hx:346: lines 346-350
 					$_g2 = 0;
 					$_g3 = $arr->values;
 					while ($_g2 < $_g3->length) {
-						#/src/maglev/MagLevTypes.hx:341: characters 26-31
+						#/src/maglev/MagLevTypes.hx:346: characters 26-31
 						$item2 = ($_g3->arr[$_g2] ?? null);
-						#/src/maglev/MagLevTypes.hx:341: lines 341-345
+						#/src/maglev/MagLevTypes.hx:346: lines 346-350
 						++$_g2;
-						#/src/maglev/MagLevTypes.hx:342: lines 342-344
+						#/src/maglev/MagLevTypes.hx:347: lines 347-349
 						if ($item->isEqual($item2)) {
-							#/src/maglev/MagLevTypes.hx:343: characters 29-41
+							#/src/maglev/MagLevTypes.hx:348: characters 29-41
 							$found = true;
 						}
 					}
-					#/src/maglev/MagLevTypes.hx:346: characters 21-45
+					#/src/maglev/MagLevTypes.hx:351: characters 21-45
 					if (!$found) {
-						#/src/maglev/MagLevTypes.hx:346: characters 33-45
+						#/src/maglev/MagLevTypes.hx:351: characters 33-45
 						return false;
 					}
 				}
-				#/src/maglev/MagLevTypes.hx:348: characters 17-28
+				#/src/maglev/MagLevTypes.hx:353: characters 17-28
 				return true;
 			} else {
-				#/src/maglev/MagLevTypes.hx:351: characters 17-29
+				#/src/maglev/MagLevTypes.hx:356: characters 17-29
 				return false;
 			}
 		} else {
-			#/src/maglev/MagLevTypes.hx:355: characters 13-25
+			#/src/maglev/MagLevTypes.hx:360: characters 13-25
 			return false;
 		}
 	}
@@ -109,12 +110,12 @@ class MagLevArray extends MagLevAny {
 	 * @return MagLevAny
 	 */
 	public function pop () {
-		#/src/maglev/MagLevTypes.hx:310: characters 32-44
+		#/src/maglev/MagLevTypes.hx:315: characters 32-44
 		$_this = $this->values;
 		if ($_this->length > 0) {
 			$_this->length--;
 		}
-		#/src/maglev/MagLevTypes.hx:310: characters 9-45
+		#/src/maglev/MagLevTypes.hx:315: characters 9-45
 		return MagLevNull::wrap(array_pop($_this->arr));
 	}
 
@@ -124,10 +125,10 @@ class MagLevArray extends MagLevAny {
 	 * @return int
 	 */
 	public function push ($x) {
-		#/src/maglev/MagLevTypes.hx:313: characters 9-23
+		#/src/maglev/MagLevTypes.hx:318: characters 9-23
 		$_this = $this->values;
 		$_this->arr[$_this->length++] = $x;
-		#/src/maglev/MagLevTypes.hx:314: characters 9-22
+		#/src/maglev/MagLevTypes.hx:319: characters 9-22
 		return $this->size();
 	}
 
@@ -135,7 +136,7 @@ class MagLevArray extends MagLevAny {
 	 * @return void
 	 */
 	public function reverse () {
-		#/src/maglev/MagLevTypes.hx:323: characters 9-25
+		#/src/maglev/MagLevTypes.hx:328: characters 9-25
 		$_this = $this->values;
 		$_this->arr = array_reverse($_this->arr);
 	}
@@ -147,7 +148,7 @@ class MagLevArray extends MagLevAny {
 	 * @return void
 	 */
 	public function set ($i, $value) {
-		#/src/maglev/MagLevTypes.hx:329: characters 9-43
+		#/src/maglev/MagLevTypes.hx:334: characters 9-43
 		$this->values->offsetSet($i, MagLevNull::wrap($value));
 	}
 
@@ -155,12 +156,12 @@ class MagLevArray extends MagLevAny {
 	 * @return MagLevAny
 	 */
 	public function shift () {
-		#/src/maglev/MagLevTypes.hx:317: characters 32-46
+		#/src/maglev/MagLevTypes.hx:322: characters 32-46
 		$_this = $this->values;
 		if ($_this->length > 0) {
 			$_this->length--;
 		}
-		#/src/maglev/MagLevTypes.hx:317: characters 9-47
+		#/src/maglev/MagLevTypes.hx:322: characters 9-47
 		return MagLevNull::wrap(array_shift($_this->arr));
 	}
 
@@ -168,7 +169,7 @@ class MagLevArray extends MagLevAny {
 	 * @return int
 	 */
 	public function size () {
-		#/src/maglev/MagLevTypes.hx:307: characters 9-29
+		#/src/maglev/MagLevTypes.hx:312: characters 9-29
 		return $this->values->length;
 	}
 
@@ -176,31 +177,31 @@ class MagLevArray extends MagLevAny {
 	 * @return MagLevString
 	 */
 	public function toJson () {
-		#/src/maglev/MagLevTypes.hx:359: characters 9-28
+		#/src/maglev/MagLevTypes.hx:364: characters 9-28
 		$s = "[";
-		#/src/maglev/MagLevTypes.hx:360: characters 9-31
+		#/src/maglev/MagLevTypes.hx:365: characters 9-31
 		$first = true;
-		#/src/maglev/MagLevTypes.hx:361: lines 361-367
+		#/src/maglev/MagLevTypes.hx:366: lines 366-372
 		$_g = 0;
 		$_g1 = $this->values;
 		while ($_g < $_g1->length) {
-			#/src/maglev/MagLevTypes.hx:361: characters 14-18
+			#/src/maglev/MagLevTypes.hx:366: characters 14-18
 			$item = ($_g1->arr[$_g] ?? null);
-			#/src/maglev/MagLevTypes.hx:361: lines 361-367
+			#/src/maglev/MagLevTypes.hx:366: lines 366-372
 			++$_g;
-			#/src/maglev/MagLevTypes.hx:362: lines 362-364
+			#/src/maglev/MagLevTypes.hx:367: lines 367-369
 			if (!$first) {
-				#/src/maglev/MagLevTypes.hx:363: characters 17-26
+				#/src/maglev/MagLevTypes.hx:368: characters 17-26
 				$s = ($s??'null') . ", ";
 			}
-			#/src/maglev/MagLevTypes.hx:365: characters 13-43
+			#/src/maglev/MagLevTypes.hx:370: characters 13-43
 			$s = ($s??'null') . ($item->toJson()->getString()??'null');
-			#/src/maglev/MagLevTypes.hx:366: characters 13-26
+			#/src/maglev/MagLevTypes.hx:371: characters 13-26
 			$first = false;
 		}
-		#/src/maglev/MagLevTypes.hx:368: characters 9-17
+		#/src/maglev/MagLevTypes.hx:373: characters 9-17
 		$s = ($s??'null') . "]";
-		#/src/maglev/MagLevTypes.hx:369: characters 9-35
+		#/src/maglev/MagLevTypes.hx:374: characters 9-35
 		return new MagLevString($s);
 	}
 
@@ -210,7 +211,7 @@ class MagLevArray extends MagLevAny {
 	 * @return void
 	 */
 	public function unshift ($x) {
-		#/src/maglev/MagLevTypes.hx:320: characters 9-43
+		#/src/maglev/MagLevTypes.hx:325: characters 9-43
 		$_this = $this->values;
 		$x1 = MagLevNull::wrap($x);
 		$_this->length = array_unshift($_this->arr, $x1);

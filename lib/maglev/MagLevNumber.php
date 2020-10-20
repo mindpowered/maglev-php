@@ -6,6 +6,7 @@
 namespace maglev;
 
 use \php\Boot;
+use \maglev\_MagLevTypes\MagLevType_Impl_;
 
 class MagLevNumber extends MagLevAny {
 	/**
@@ -19,7 +20,7 @@ class MagLevNumber extends MagLevAny {
 	 * @return MagLevNumber
 	 */
 	public static function fromFloat ($value) {
-		#/src/maglev/MagLevTypes.hx:378: characters 9-39
+		#/src/maglev/MagLevTypes.hx:383: characters 9-39
 		return new MagLevNumber($value);
 	}
 
@@ -29,7 +30,7 @@ class MagLevNumber extends MagLevAny {
 	 * @return MagLevNumber
 	 */
 	public static function fromInt ($value) {
-		#/src/maglev/MagLevTypes.hx:381: characters 9-39
+		#/src/maglev/MagLevTypes.hx:386: characters 9-39
 		return new MagLevNumber($value);
 	}
 
@@ -39,9 +40,9 @@ class MagLevNumber extends MagLevAny {
 	 * @return void
 	 */
 	public function __construct ($value) {
-		#/src/maglev/MagLevTypes.hx:384: characters 9-27
+		#/src/maglev/MagLevTypes.hx:389: characters 9-27
 		$this->value = $value;
-		#/src/maglev/MagLevTypes.hx:385: characters 9-16
+		#/src/maglev/MagLevTypes.hx:390: characters 9-16
 		parent::__construct();
 	}
 
@@ -49,7 +50,7 @@ class MagLevNumber extends MagLevAny {
 	 * @return float
 	 */
 	public function getFloat () {
-		#/src/maglev/MagLevTypes.hx:388: characters 9-26
+		#/src/maglev/MagLevTypes.hx:393: characters 9-26
 		return $this->value;
 	}
 
@@ -57,16 +58,16 @@ class MagLevNumber extends MagLevAny {
 	 * @return int
 	 */
 	public function getInt () {
-		#/src/maglev/MagLevTypes.hx:391: characters 16-35
+		#/src/maglev/MagLevTypes.hx:396: characters 16-35
 		return (int)($this->value);
 	}
 
 	/**
-	 * @return MagLevType
+	 * @return int
 	 */
 	public function getType () {
-		#/src/maglev/MagLevTypes.hx:394: characters 9-33
-		return MagLevType::MagLevType_Number();
+		#/src/maglev/MagLevTypes.hx:399: characters 9-44
+		return MagLevType_Impl_::$MagLevType_Number;
 	}
 
 	/**
@@ -75,14 +76,14 @@ class MagLevNumber extends MagLevAny {
 	 * @return bool
 	 */
 	public function isEqual ($other) {
-		#/src/maglev/MagLevTypes.hx:397: lines 397-403
+		#/src/maglev/MagLevTypes.hx:402: lines 402-408
 		if ($other->getType() === $this->getType()) {
-			#/src/maglev/MagLevTypes.hx:398: characters 13-47
+			#/src/maglev/MagLevTypes.hx:403: characters 13-47
 			$o = Boot::typedCast(Boot::getClass(MagLevNumber::class), $other);
-			#/src/maglev/MagLevTypes.hx:399: characters 13-46
+			#/src/maglev/MagLevTypes.hx:404: characters 13-46
 			return Boot::equal($this->getFloat(), $o->getFloat());
 		} else {
-			#/src/maglev/MagLevTypes.hx:402: characters 13-25
+			#/src/maglev/MagLevTypes.hx:407: characters 13-25
 			return false;
 		}
 	}
@@ -91,7 +92,7 @@ class MagLevNumber extends MagLevAny {
 	 * @return MagLevString
 	 */
 	public function toJson () {
-		#/src/maglev/MagLevTypes.hx:406: characters 9-51
+		#/src/maglev/MagLevTypes.hx:411: characters 9-51
 		return new MagLevString(\Std::string($this->value));
 	}
 }

@@ -6,6 +6,7 @@
 namespace maglev;
 
 use \php\Boot;
+use \maglev\_MagLevTypes\MagLevType_Impl_;
 
 class MagLevResult {
 	/**
@@ -23,11 +24,11 @@ class MagLevResult {
 	 * @return MagLevResult
 	 */
 	public static function fromError ($err) {
-		#/src/maglev/MagLevTypes.hx:47: characters 9-54
+		#/src/maglev/MagLevTypes.hx:52: characters 9-54
 		$result = new MagLevResult();
-		#/src/maglev/MagLevTypes.hx:48: characters 9-29
+		#/src/maglev/MagLevTypes.hx:53: characters 9-29
 		$result->setError($err);
-		#/src/maglev/MagLevTypes.hx:49: characters 9-22
+		#/src/maglev/MagLevTypes.hx:54: characters 9-22
 		return $result;
 	}
 
@@ -37,11 +38,11 @@ class MagLevResult {
 	 * @return MagLevResult
 	 */
 	public static function fromResult ($res) {
-		#/src/maglev/MagLevTypes.hx:42: characters 9-54
+		#/src/maglev/MagLevTypes.hx:47: characters 9-54
 		$result = new MagLevResult();
-		#/src/maglev/MagLevTypes.hx:43: characters 9-30
+		#/src/maglev/MagLevTypes.hx:48: characters 9-30
 		$result->setResult($res);
-		#/src/maglev/MagLevTypes.hx:44: characters 9-22
+		#/src/maglev/MagLevTypes.hx:49: characters 9-22
 		return $result;
 	}
 
@@ -49,9 +50,9 @@ class MagLevResult {
 	 * @return void
 	 */
 	public function __construct () {
-		#/src/maglev/MagLevTypes.hx:53: characters 9-34
+		#/src/maglev/MagLevTypes.hx:58: characters 9-34
 		$this->result = new MagLevNull();
-		#/src/maglev/MagLevTypes.hx:54: characters 9-21
+		#/src/maglev/MagLevTypes.hx:59: characters 9-21
 		$this->error = null;
 	}
 
@@ -59,7 +60,7 @@ class MagLevResult {
 	 * @return MagLevError
 	 */
 	public function getError () {
-		#/src/maglev/MagLevTypes.hx:67: characters 9-21
+		#/src/maglev/MagLevTypes.hx:72: characters 9-21
 		return $this->error;
 	}
 
@@ -67,16 +68,16 @@ class MagLevResult {
 	 * @return MagLevAny
 	 */
 	public function getResult () {
-		#/src/maglev/MagLevTypes.hx:60: characters 9-22
+		#/src/maglev/MagLevTypes.hx:65: characters 9-22
 		return $this->result;
 	}
 
 	/**
-	 * @return MagLevType
+	 * @return int
 	 */
 	public function getType () {
-		#/src/maglev/MagLevTypes.hx:74: characters 9-33
-		return MagLevType::MagLevType_Result();
+		#/src/maglev/MagLevTypes.hx:79: characters 9-44
+		return MagLevType_Impl_::$MagLevType_Result;
 	}
 
 	/**
@@ -85,18 +86,18 @@ class MagLevResult {
 	 * @return bool
 	 */
 	public function isEqual ($other) {
-		#/src/maglev/MagLevTypes.hx:78: lines 78-88
+		#/src/maglev/MagLevTypes.hx:83: lines 83-93
 		if ($this->isError() === $other->isError()) {
-			#/src/maglev/MagLevTypes.hx:80: lines 80-84
+			#/src/maglev/MagLevTypes.hx:85: lines 85-89
 			if ($this->isError()) {
-				#/src/maglev/MagLevTypes.hx:81: characters 17-60
+				#/src/maglev/MagLevTypes.hx:86: characters 17-60
 				return $this->getError()->isEqual($other->getError());
 			} else {
-				#/src/maglev/MagLevTypes.hx:83: characters 17-62
+				#/src/maglev/MagLevTypes.hx:88: characters 17-62
 				return $this->getResult()->isEqual($other->getResult());
 			}
 		} else {
-			#/src/maglev/MagLevTypes.hx:87: characters 13-25
+			#/src/maglev/MagLevTypes.hx:92: characters 13-25
 			return false;
 		}
 	}
@@ -105,7 +106,7 @@ class MagLevResult {
 	 * @return bool
 	 */
 	public function isError () {
-		#/src/maglev/MagLevTypes.hx:57: characters 9-30
+		#/src/maglev/MagLevTypes.hx:62: characters 9-30
 		return $this->result === null;
 	}
 
@@ -115,9 +116,9 @@ class MagLevResult {
 	 * @return void
 	 */
 	public function setError ($err) {
-		#/src/maglev/MagLevTypes.hx:70: characters 9-22
+		#/src/maglev/MagLevTypes.hx:75: characters 9-22
 		$this->result = null;
-		#/src/maglev/MagLevTypes.hx:71: characters 9-20
+		#/src/maglev/MagLevTypes.hx:76: characters 9-20
 		$this->error = $err;
 	}
 
@@ -127,9 +128,9 @@ class MagLevResult {
 	 * @return void
 	 */
 	public function setResult ($res) {
-		#/src/maglev/MagLevTypes.hx:63: characters 9-21
+		#/src/maglev/MagLevTypes.hx:68: characters 9-21
 		$this->result = $res;
-		#/src/maglev/MagLevTypes.hx:64: characters 9-21
+		#/src/maglev/MagLevTypes.hx:69: characters 9-21
 		$this->error = null;
 	}
 
@@ -137,19 +138,19 @@ class MagLevResult {
 	 * @return MagLevString
 	 */
 	public function toJson () {
-		#/src/maglev/MagLevTypes.hx:91: characters 9-33
+		#/src/maglev/MagLevTypes.hx:96: characters 9-33
 		$res = "null";
-		#/src/maglev/MagLevTypes.hx:92: characters 9-33
+		#/src/maglev/MagLevTypes.hx:97: characters 9-33
 		$err = "null";
-		#/src/maglev/MagLevTypes.hx:93: lines 93-97
+		#/src/maglev/MagLevTypes.hx:98: lines 98-102
 		if ($this->isError()) {
-			#/src/maglev/MagLevTypes.hx:94: characters 13-45
+			#/src/maglev/MagLevTypes.hx:99: characters 13-45
 			$err = $this->error->toJson()->getString();
 		} else {
-			#/src/maglev/MagLevTypes.hx:96: characters 13-46
+			#/src/maglev/MagLevTypes.hx:101: characters 13-46
 			$res = $this->result->toJson()->getString();
 		}
-		#/src/maglev/MagLevTypes.hx:98: characters 9-81
+		#/src/maglev/MagLevTypes.hx:103: characters 9-81
 		return new MagLevString("{\"result\": " . ($res??'null') . ", \"error\": " . ($err??'null') . "}");
 	}
 }
