@@ -22,7 +22,7 @@ class MagLevAny {
 	 * @return int
 	 */
 	public function getType () {
-		#/src/maglev/MagLevTypes.hx:159: characters 9-14
+		#/src/maglev/MagLev.hx:235: characters 9-14
 		throw Exception::thrown("getType does not exist for MagLevAny");
 	}
 
@@ -32,7 +32,7 @@ class MagLevAny {
 	 * @return bool
 	 */
 	public function isEqual ($o) {
-		#/src/maglev/MagLevTypes.hx:162: characters 9-14
+		#/src/maglev/MagLev.hx:238: characters 9-14
 		throw Exception::thrown("isEqual does not exist for MagLevAny");
 	}
 
@@ -40,7 +40,7 @@ class MagLevAny {
 	 * @return MagLevString
 	 */
 	public function toJson () {
-		#/src/maglev/MagLevTypes.hx:156: characters 9-14
+		#/src/maglev/MagLev.hx:232: characters 9-14
 		throw Exception::thrown("toJson does not exist for MagLevAny");
 	}
 }

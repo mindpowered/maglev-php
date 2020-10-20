@@ -6,7 +6,7 @@
 namespace maglev;
 
 use \php\Boot;
-use \maglev\_MagLevTypes\MagLevType_Impl_;
+use \maglev\_MagLev\MagLevType_Impl_;
 use \haxe\Exception;
 use \php\_Boot\HxClosure;
 use \haxe\ds\StringMap;

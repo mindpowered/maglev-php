@@ -6,14 +6,14 @@
 namespace maglev;
 
 use \php\Boot;
-use \maglev\_MagLevTypes\MagLevType_Impl_;
+use \maglev\_MagLev\MagLevType_Impl_;
 
 class MagLevNull extends MagLevAny {
 	/**
 	 * @return MagLevNull
 	 */
 	public static function create () {
-		#/src/maglev/MagLevTypes.hx:485: characters 9-32
+		#/src/maglev/MagLev.hx:561: characters 9-32
 		return new MagLevNull();
 	}
 
@@ -23,12 +23,12 @@ class MagLevNull extends MagLevAny {
 	 * @return MagLevAny
 	 */
 	public static function wrap ($o) {
-		#/src/maglev/MagLevTypes.hx:505: lines 505-509
+		#/src/maglev/MagLev.hx:581: lines 581-585
 		if ($o === null) {
-			#/src/maglev/MagLevTypes.hx:506: characters 13-36
+			#/src/maglev/MagLev.hx:582: characters 13-36
 			return new MagLevNull();
 		} else {
-			#/src/maglev/MagLevTypes.hx:508: characters 13-21
+			#/src/maglev/MagLev.hx:584: characters 13-21
 			return $o;
 		}
 	}
@@ -37,7 +37,7 @@ class MagLevNull extends MagLevAny {
 	 * @return void
 	 */
 	public function __construct () {
-		#/src/maglev/MagLevTypes.hx:488: characters 9-16
+		#/src/maglev/MagLev.hx:564: characters 9-16
 		parent::__construct();
 	}
 
@@ -45,7 +45,7 @@ class MagLevNull extends MagLevAny {
 	 * @return int
 	 */
 	public function getType () {
-		#/src/maglev/MagLevTypes.hx:491: characters 9-42
+		#/src/maglev/MagLev.hx:567: characters 9-42
 		return MagLevType_Impl_::$MagLevType_Null;
 	}
 
@@ -55,12 +55,12 @@ class MagLevNull extends MagLevAny {
 	 * @return bool
 	 */
 	public function isEqual ($other) {
-		#/src/maglev/MagLevTypes.hx:494: lines 494-499
+		#/src/maglev/MagLev.hx:570: lines 570-575
 		if ($other->getType() === $this->getType()) {
-			#/src/maglev/MagLevTypes.hx:495: characters 13-24
+			#/src/maglev/MagLev.hx:571: characters 13-24
 			return true;
 		} else {
-			#/src/maglev/MagLevTypes.hx:498: characters 13-25
+			#/src/maglev/MagLev.hx:574: characters 13-25
 			return false;
 		}
 	}
@@ -69,7 +69,7 @@ class MagLevNull extends MagLevAny {
 	 * @return MagLevString
 	 */
 	public function toJson () {
-		#/src/maglev/MagLevTypes.hx:502: characters 9-40
+		#/src/maglev/MagLev.hx:578: characters 9-40
 		return new MagLevString("null");
 	}
 }

@@ -6,7 +6,7 @@
 namespace maglev;
 
 use \php\Boot;
-use \maglev\_MagLevTypes\MagLevType_Impl_;
+use \maglev\_MagLev\MagLevType_Impl_;
 use \haxe\ds\StringMap;
 use \php\_NativeIndexedArray\NativeIndexedArrayIterator;
 
@@ -20,7 +20,7 @@ class MagLevObject extends MagLevAny {
 	 * @return MagLevObject
 	 */
 	public static function create () {
-		#/src/maglev/MagLevTypes.hx:223: characters 9-34
+		#/src/maglev/MagLev.hx:299: characters 9-34
 		return new MagLevObject();
 	}
 
@@ -28,9 +28,9 @@ class MagLevObject extends MagLevAny {
 	 * @return void
 	 */
 	public function __construct () {
-		#/src/maglev/MagLevTypes.hx:226: characters 9-50
+		#/src/maglev/MagLev.hx:302: characters 9-50
 		$this->values = new StringMap();
-		#/src/maglev/MagLevTypes.hx:227: characters 9-16
+		#/src/maglev/MagLev.hx:303: characters 9-16
 		parent::__construct();
 	}
 
@@ -38,7 +38,7 @@ class MagLevObject extends MagLevAny {
 	 * @return void
 	 */
 	public function clear () {
-		#/src/maglev/MagLevTypes.hx:230: characters 9-23
+		#/src/maglev/MagLev.hx:306: characters 9-23
 		$this1 = $this->values;
 		$this2 = [];
 		$this1->data = $this2;
@@ -50,7 +50,7 @@ class MagLevObject extends MagLevAny {
 	 * @return bool
 	 */
 	public function exists ($key) {
-		#/src/maglev/MagLevTypes.hx:233: characters 16-34
+		#/src/maglev/MagLev.hx:309: characters 16-34
 		return array_key_exists($key, $this->values->data);
 	}
 
@@ -60,7 +60,7 @@ class MagLevObject extends MagLevAny {
 	 * @return MagLevAny
 	 */
 	public function get ($key) {
-		#/src/maglev/MagLevTypes.hx:236: characters 9-48
+		#/src/maglev/MagLev.hx:312: characters 9-48
 		return MagLevNull::wrap(($this->values->data[$key] ?? null));
 	}
 
@@ -68,7 +68,7 @@ class MagLevObject extends MagLevAny {
 	 * @return StringMap
 	 */
 	public function getStringMap () {
-		#/src/maglev/MagLevTypes.hx:252: characters 9-22
+		#/src/maglev/MagLev.hx:328: characters 9-22
 		return $this->values;
 	}
 
@@ -76,7 +76,7 @@ class MagLevObject extends MagLevAny {
 	 * @return int
 	 */
 	public function getType () {
-		#/src/maglev/MagLevTypes.hx:255: characters 9-44
+		#/src/maglev/MagLev.hx:331: characters 9-44
 		return MagLevType_Impl_::$MagLevType_Object;
 	}
 
@@ -86,49 +86,49 @@ class MagLevObject extends MagLevAny {
 	 * @return bool
 	 */
 	public function isEqual ($other) {
-		#/src/maglev/MagLevTypes.hx:258: lines 258-281
+		#/src/maglev/MagLev.hx:334: lines 334-357
 		if ($other->getType() === $this->getType()) {
-			#/src/maglev/MagLevTypes.hx:259: characters 13-62
+			#/src/maglev/MagLev.hx:335: characters 13-62
 			$obj = Boot::typedCast(Boot::getClass(MagLevObject::class), $other);
-			#/src/maglev/MagLevTypes.hx:260: characters 25-38
+			#/src/maglev/MagLev.hx:336: characters 25-38
 			$key = new NativeIndexedArrayIterator(array_values(array_map("strval", array_keys($this->values->data))));
 			while ($key->hasNext()) {
-				#/src/maglev/MagLevTypes.hx:260: lines 260-276
+				#/src/maglev/MagLev.hx:336: lines 336-352
 				$key1 = $key->next();
-				#/src/maglev/MagLevTypes.hx:261: characters 17-40
+				#/src/maglev/MagLev.hx:337: characters 17-40
 				$found = false;
-				#/src/maglev/MagLevTypes.hx:262: characters 17-40
+				#/src/maglev/MagLev.hx:338: characters 17-40
 				$equal = false;
-				#/src/maglev/MagLevTypes.hx:263: characters 29-54
+				#/src/maglev/MagLev.hx:339: characters 29-54
 				$key2 = new NativeIndexedArrayIterator(array_values(array_map("strval", array_keys($obj->getStringMap()->data))));
 				while ($key2->hasNext()) {
-					#/src/maglev/MagLevTypes.hx:263: lines 263-272
+					#/src/maglev/MagLev.hx:339: lines 339-348
 					$key21 = $key2->next();
-					#/src/maglev/MagLevTypes.hx:264: lines 264-271
+					#/src/maglev/MagLev.hx:340: lines 340-347
 					if ($key1 === $key21) {
-						#/src/maglev/MagLevTypes.hx:265: characters 25-37
+						#/src/maglev/MagLev.hx:341: characters 25-37
 						$found = true;
-						#/src/maglev/MagLevTypes.hx:266: characters 25-57
+						#/src/maglev/MagLev.hx:342: characters 25-57
 						$val = ($this->values->data[$key1] ?? null);
-						#/src/maglev/MagLevTypes.hx:267: characters 25-63
+						#/src/maglev/MagLev.hx:343: characters 25-63
 						$val2 = ($obj->values->data[$key21] ?? null);
-						#/src/maglev/MagLevTypes.hx:268: lines 268-270
+						#/src/maglev/MagLev.hx:344: lines 344-346
 						if ($val->isEqual($val2)) {
-							#/src/maglev/MagLevTypes.hx:269: characters 29-41
+							#/src/maglev/MagLev.hx:345: characters 29-41
 							$equal = true;
 						}
 					}
 				}
-				#/src/maglev/MagLevTypes.hx:273: lines 273-275
+				#/src/maglev/MagLev.hx:349: lines 349-351
 				if (!$found || !$equal) {
-					#/src/maglev/MagLevTypes.hx:274: characters 21-33
+					#/src/maglev/MagLev.hx:350: characters 21-33
 					return false;
 				}
 			}
-			#/src/maglev/MagLevTypes.hx:277: characters 13-24
+			#/src/maglev/MagLev.hx:353: characters 13-24
 			return true;
 		} else {
-			#/src/maglev/MagLevTypes.hx:280: characters 13-25
+			#/src/maglev/MagLev.hx:356: characters 13-25
 			return false;
 		}
 	}
@@ -137,17 +137,17 @@ class MagLevObject extends MagLevAny {
 	 * @return MagLevArray
 	 */
 	public function keys () {
-		#/src/maglev/MagLevTypes.hx:239: characters 9-49
+		#/src/maglev/MagLev.hx:315: characters 9-49
 		$arr = new MagLevArray();
-		#/src/maglev/MagLevTypes.hx:240: characters 18-31
+		#/src/maglev/MagLev.hx:316: characters 18-31
 		$k = new NativeIndexedArrayIterator(array_values(array_map("strval", array_keys($this->values->data))));
 		while ($k->hasNext()) {
-			#/src/maglev/MagLevTypes.hx:240: lines 240-242
+			#/src/maglev/MagLev.hx:316: lines 316-318
 			$k1 = $k->next();
-			#/src/maglev/MagLevTypes.hx:241: characters 13-42
+			#/src/maglev/MagLev.hx:317: characters 13-42
 			$arr->push(new MagLevString($k1));
 		}
-		#/src/maglev/MagLevTypes.hx:243: characters 9-19
+		#/src/maglev/MagLev.hx:319: characters 9-19
 		return $arr;
 	}
 
@@ -157,7 +157,7 @@ class MagLevObject extends MagLevAny {
 	 * @return bool
 	 */
 	public function remove ($key) {
-		#/src/maglev/MagLevTypes.hx:246: characters 16-34
+		#/src/maglev/MagLev.hx:322: characters 16-34
 		return $this->values->remove($key);
 	}
 
@@ -168,7 +168,7 @@ class MagLevObject extends MagLevAny {
 	 * @return void
 	 */
 	public function set ($key, $value) {
-		#/src/maglev/MagLevTypes.hx:249: characters 9-48
+		#/src/maglev/MagLev.hx:325: characters 9-48
 		$this1 = $this->values;
 		$value1 = MagLevNull::wrap($value);
 		$this1->data[$key] = $value1;
@@ -178,32 +178,32 @@ class MagLevObject extends MagLevAny {
 	 * @return MagLevString
 	 */
 	public function toJson () {
-		#/src/maglev/MagLevTypes.hx:284: characters 9-28
+		#/src/maglev/MagLev.hx:360: characters 9-28
 		$s = "{";
-		#/src/maglev/MagLevTypes.hx:285: characters 9-31
+		#/src/maglev/MagLev.hx:361: characters 9-31
 		$first = true;
-		#/src/maglev/MagLevTypes.hx:286: characters 21-34
+		#/src/maglev/MagLev.hx:362: characters 21-34
 		$key = new NativeIndexedArrayIterator(array_values(array_map("strval", array_keys($this->values->data))));
 		while ($key->hasNext()) {
-			#/src/maglev/MagLevTypes.hx:286: lines 286-294
+			#/src/maglev/MagLev.hx:362: lines 362-370
 			$key1 = $key->next();
-			#/src/maglev/MagLevTypes.hx:287: lines 287-289
+			#/src/maglev/MagLev.hx:363: lines 363-365
 			if (!$first) {
-				#/src/maglev/MagLevTypes.hx:288: characters 17-26
+				#/src/maglev/MagLev.hx:364: characters 17-26
 				$s = ($s??'null') . ", ";
 			}
-			#/src/maglev/MagLevTypes.hx:290: characters 13-21
+			#/src/maglev/MagLev.hx:366: characters 13-21
 			$s = ($s??'null') . ($key1??'null');
-			#/src/maglev/MagLevTypes.hx:291: characters 13-22
+			#/src/maglev/MagLev.hx:367: characters 13-22
 			$s = ($s??'null') . ": ";
-			#/src/maglev/MagLevTypes.hx:292: characters 13-38
+			#/src/maglev/MagLev.hx:368: characters 13-38
 			$s = ($s??'null') . (\Std::string(($this->values->data[$key1] ?? null)->toJson())??'null');
-			#/src/maglev/MagLevTypes.hx:293: characters 13-26
+			#/src/maglev/MagLev.hx:369: characters 13-26
 			$first = false;
 		}
-		#/src/maglev/MagLevTypes.hx:295: characters 9-17
+		#/src/maglev/MagLev.hx:371: characters 9-17
 		$s = ($s??'null') . "}";
-		#/src/maglev/MagLevTypes.hx:296: characters 9-35
+		#/src/maglev/MagLev.hx:372: characters 9-35
 		return new MagLevString($s);
 	}
 }
