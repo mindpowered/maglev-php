@@ -6,7 +6,6 @@
 namespace maglev;
 
 use \php\Boot;
-use \maglev\_MagLev\MagLevType_Impl_;
 
 class MagLevString extends MagLevAny {
 	/**
@@ -20,8 +19,16 @@ class MagLevString extends MagLevAny {
 	 * @return MagLevString
 	 */
 	public static function fromString ($value) {
-		#/src/maglev/MagLev.hx:496: characters 9-39
+		#/src/maglev/MagLev.hx:493: characters 9-39
 		return new MagLevString($value);
+	}
+
+	/**
+	 * @return int
+	 */
+	public static function getStaticType () {
+		#/src/maglev/MagLev.hx:506: characters 9-17
+		return 3;
 	}
 
 	/**
@@ -30,9 +37,9 @@ class MagLevString extends MagLevAny {
 	 * @return void
 	 */
 	public function __construct ($value) {
-		#/src/maglev/MagLev.hx:499: characters 9-27
+		#/src/maglev/MagLev.hx:496: characters 9-27
 		$this->value = $value;
-		#/src/maglev/MagLev.hx:500: characters 9-16
+		#/src/maglev/MagLev.hx:497: characters 9-16
 		parent::__construct();
 	}
 
@@ -40,7 +47,7 @@ class MagLevString extends MagLevAny {
 	 * @return string
 	 */
 	public function getString () {
-		#/src/maglev/MagLev.hx:503: characters 9-26
+		#/src/maglev/MagLev.hx:500: characters 9-26
 		return $this->value;
 	}
 
@@ -48,8 +55,8 @@ class MagLevString extends MagLevAny {
 	 * @return int
 	 */
 	public function getType () {
-		#/src/maglev/MagLev.hx:506: characters 9-44
-		return MagLevType_Impl_::$MagLevType_String;
+		#/src/maglev/MagLev.hx:503: characters 9-17
+		return 3;
 	}
 
 	/**

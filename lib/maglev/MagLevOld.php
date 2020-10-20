@@ -6,7 +6,6 @@
 namespace maglev;
 
 use \php\Boot;
-use \maglev\_MagLev\MagLevType_Impl_;
 use \haxe\Exception;
 use \php\_Boot\HxClosure;
 use \haxe\ds\StringMap;
@@ -78,25 +77,25 @@ class MagLevOld {
 	 */
 	public function convertToHaxe ($x) {
 		#/src/maglev/MagLevOld.hx:106: lines 106-145
-		if ($x->getType() === MagLevType_Impl_::$MagLevType_Null) {
+		if ($x->getType() === MagLevNull::getStaticType()) {
 			#/src/maglev/MagLevOld.hx:107: characters 13-24
 			return null;
-		} else if ($x->getType() === MagLevType_Impl_::$MagLevType_Boolean) {
+		} else if ($x->getType() === MagLevBoolean::getStaticType()) {
 			#/src/maglev/MagLevOld.hx:110: characters 13-44
 			$y = Boot::typedCast(Boot::getClass(MagLevBoolean::class), $x);
 			#/src/maglev/MagLevOld.hx:111: characters 13-31
 			return $y->getBool();
-		} else if ($x->getType() === MagLevType_Impl_::$MagLevType_String) {
+		} else if ($x->getType() === MagLevString::getStaticType()) {
 			#/src/maglev/MagLevOld.hx:114: characters 13-43
 			$y = Boot::typedCast(Boot::getClass(MagLevString::class), $x);
 			#/src/maglev/MagLevOld.hx:115: characters 13-33
 			return $y->getString();
-		} else if ($x->getType() === MagLevType_Impl_::$MagLevType_Number) {
+		} else if ($x->getType() === MagLevNumber::getStaticType()) {
 			#/src/maglev/MagLevOld.hx:118: characters 13-43
 			$y = Boot::typedCast(Boot::getClass(MagLevNumber::class), $x);
 			#/src/maglev/MagLevOld.hx:119: characters 13-32
 			return $y->getFloat();
-		} else if ($x->getType() === MagLevType_Impl_::$MagLevType_Array) {
+		} else if ($x->getType() === MagLevArray::getStaticType()) {
 			#/src/maglev/MagLevOld.hx:122: characters 13-42
 			$y = Boot::typedCast(Boot::getClass(MagLevArray::class), $x);
 			#/src/maglev/MagLevOld.hx:123: characters 13-51
@@ -113,7 +112,7 @@ class MagLevOld {
 			}
 			#/src/maglev/MagLevOld.hx:129: characters 13-23
 			return $arr;
-		} else if ($x->getType() === MagLevType_Impl_::$MagLevType_Object) {
+		} else if ($x->getType() === MagLevObject::getStaticType()) {
 			#/src/maglev/MagLevOld.hx:132: characters 13-43
 			$y = Boot::typedCast(Boot::getClass(MagLevObject::class), $x);
 			#/src/maglev/MagLevOld.hx:133: characters 13-61
