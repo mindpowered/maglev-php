@@ -29,11 +29,11 @@ class MagLevError {
 	 * @return MagLevError
 	 */
 	public static function create ($code, $message, $data) {
-		#/src/maglev/MagLev.hx:172: characters 9-44
+		#/src/maglev/MagLev.hx:222: characters 9-44
 		$code2 = new MagLevNumber($code);
-		#/src/maglev/MagLev.hx:173: characters 9-50
+		#/src/maglev/MagLev.hx:223: characters 9-50
 		$message2 = new MagLevString($message);
-		#/src/maglev/MagLev.hx:174: characters 9-54
+		#/src/maglev/MagLev.hx:224: characters 9-54
 		return new MagLevError($code2, $message2, $data);
 	}
 
@@ -41,7 +41,7 @@ class MagLevError {
 	 * @return int
 	 */
 	public static function getStaticType () {
-		#/src/maglev/MagLev.hx:194: characters 9-19
+		#/src/maglev/MagLev.hx:244: characters 9-19
 		return 100;
 	}
 
@@ -53,11 +53,11 @@ class MagLevError {
 	 * @return void
 	 */
 	public function __construct ($code, $message, $data) {
-		#/src/maglev/MagLev.hx:177: characters 9-25
+		#/src/maglev/MagLev.hx:227: characters 9-25
 		$this->code = $code;
-		#/src/maglev/MagLev.hx:178: characters 9-31
+		#/src/maglev/MagLev.hx:228: characters 9-31
 		$this->message = $message;
-		#/src/maglev/MagLev.hx:179: characters 9-25
+		#/src/maglev/MagLev.hx:229: characters 9-25
 		$this->data = $data;
 	}
 
@@ -65,7 +65,7 @@ class MagLevError {
 	 * @return int
 	 */
 	public function getCode () {
-		#/src/maglev/MagLev.hx:182: characters 9-29
+		#/src/maglev/MagLev.hx:232: characters 9-29
 		return $this->code->getInt();
 	}
 
@@ -73,7 +73,7 @@ class MagLevError {
 	 * @return MagLevAny
 	 */
 	public function getData () {
-		#/src/maglev/MagLev.hx:188: characters 9-20
+		#/src/maglev/MagLev.hx:238: characters 9-20
 		return $this->data;
 	}
 
@@ -81,7 +81,7 @@ class MagLevError {
 	 * @return string
 	 */
 	public function getMessage () {
-		#/src/maglev/MagLev.hx:185: characters 9-35
+		#/src/maglev/MagLev.hx:235: characters 9-35
 		return $this->message->getString();
 	}
 
@@ -89,7 +89,7 @@ class MagLevError {
 	 * @return int
 	 */
 	public function getType () {
-		#/src/maglev/MagLev.hx:191: characters 9-19
+		#/src/maglev/MagLev.hx:241: characters 9-19
 		return 100;
 	}
 
@@ -99,15 +99,15 @@ class MagLevError {
 	 * @return bool
 	 */
 	public function isEqual ($other) {
-		#/src/maglev/MagLev.hx:198: characters 9-30
+		#/src/maglev/MagLev.hx:248: characters 9-30
 		$same = true;
-		#/src/maglev/MagLev.hx:199: characters 24-71
+		#/src/maglev/MagLev.hx:249: characters 24-71
 		$same = $same && $this->code->isEqual(new MagLevNumber($other->getCode()));
-		#/src/maglev/MagLev.hx:200: characters 24-77
+		#/src/maglev/MagLev.hx:250: characters 24-77
 		$same = $same && $this->message->isEqual(new MagLevString($other->getMessage()));
-		#/src/maglev/MagLev.hx:201: characters 24-53
+		#/src/maglev/MagLev.hx:251: characters 24-53
 		$same = $same && $this->data->isEqual($other->getData());
-		#/src/maglev/MagLev.hx:202: characters 9-20
+		#/src/maglev/MagLev.hx:252: characters 9-20
 		return $same;
 	}
 
@@ -115,7 +115,7 @@ class MagLevError {
 	 * @return MagLevString
 	 */
 	public function toJson () {
-		#/src/maglev/MagLev.hx:205: characters 9-135
+		#/src/maglev/MagLev.hx:255: characters 9-135
 		return new MagLevString("{\"code\": " . (\Std::string($this->code->toJson())??'null') . ", \"message\": " . (\Std::string($this->message->toJson())??'null') . ", \"data\": " . (\Std::string($this->data->toJson())??'null') . "}");
 	}
 }
