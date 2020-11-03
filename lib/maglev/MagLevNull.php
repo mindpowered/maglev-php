@@ -12,7 +12,7 @@ class MagLevNull extends MagLevAny {
 	 * @return MagLevNull
 	 */
 	public static function create () {
-		#/src/maglev/MagLev.hx:614: characters 9-32
+		#/src/maglev/MagLev.hx:636: characters 9-32
 		return new MagLevNull();
 	}
 
@@ -20,7 +20,7 @@ class MagLevNull extends MagLevAny {
 	 * @return int
 	 */
 	public static function getStaticType () {
-		#/src/maglev/MagLev.hx:623: characters 9-17
+		#/src/maglev/MagLev.hx:645: characters 9-17
 		return 1;
 	}
 
@@ -30,12 +30,12 @@ class MagLevNull extends MagLevAny {
 	 * @return MagLevAny
 	 */
 	public static function wrap ($o) {
-		#/src/maglev/MagLev.hx:637: lines 637-641
+		#/src/maglev/MagLev.hx:659: lines 659-663
 		if ($o === null) {
-			#/src/maglev/MagLev.hx:638: characters 13-36
+			#/src/maglev/MagLev.hx:660: characters 13-36
 			return new MagLevNull();
 		} else {
-			#/src/maglev/MagLev.hx:640: characters 13-21
+			#/src/maglev/MagLev.hx:662: characters 13-21
 			return $o;
 		}
 	}
@@ -44,7 +44,7 @@ class MagLevNull extends MagLevAny {
 	 * @return void
 	 */
 	public function __construct () {
-		#/src/maglev/MagLev.hx:617: characters 9-16
+		#/src/maglev/MagLev.hx:639: characters 9-16
 		parent::__construct();
 	}
 
@@ -52,7 +52,7 @@ class MagLevNull extends MagLevAny {
 	 * @return int
 	 */
 	public function getType () {
-		#/src/maglev/MagLev.hx:620: characters 9-17
+		#/src/maglev/MagLev.hx:642: characters 9-17
 		return 1;
 	}
 
@@ -62,12 +62,12 @@ class MagLevNull extends MagLevAny {
 	 * @return bool
 	 */
 	public function isEqual ($other) {
-		#/src/maglev/MagLev.hx:626: lines 626-631
+		#/src/maglev/MagLev.hx:648: lines 648-653
 		if ($other->getType() === $this->getType()) {
-			#/src/maglev/MagLev.hx:627: characters 13-24
+			#/src/maglev/MagLev.hx:649: characters 13-24
 			return true;
 		} else {
-			#/src/maglev/MagLev.hx:630: characters 13-25
+			#/src/maglev/MagLev.hx:652: characters 13-25
 			return false;
 		}
 	}
@@ -76,7 +76,7 @@ class MagLevNull extends MagLevAny {
 	 * @return MagLevString
 	 */
 	public function toJson () {
-		#/src/maglev/MagLev.hx:634: characters 9-40
+		#/src/maglev/MagLev.hx:656: characters 9-40
 		return new MagLevString("null");
 	}
 }
