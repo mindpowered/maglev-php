@@ -61,7 +61,7 @@ class MagLevOld {
 			#/src/maglev/MagLevOld.hx:71: characters 13-46
 			$myargs->push($this->convertToMagLev($arg));
 		}
-		#/src/maglev/MagLevOld.hx:73: characters 9-57
+		#/src/maglev/MagLevOld.hx:73: characters 9-70
 		$myresult = $this->maglev->call($method, $myargs);
 		#/src/maglev/MagLevOld.hx:74: lines 74-76
 		$myresult->onError(function ($error) {
