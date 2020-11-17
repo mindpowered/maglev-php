@@ -19,7 +19,18 @@ Contents
 Third-party dependencies may have additional requirements.
 
 # Installation
-composer ...
+
+You can get maglev using Composer. Composer manages dependencies for packages from Packagist and you can get it here: <https://getcomposer.org/> .
+
+Create a composer.json file in the top-most directory of your project and add `mindpowered/maglev` to the requirements:
+```
+{
+        "require": {
+                "mindpowered/maglev" : "*"
+        }
+}
+```
+Now you can run the command to update composer: `composer update`. In order for composer to install the package dependencies you will need an archive manager such as zip installed. Composer requires use of the commands `zip` and `unzip`.
 
 
 # Licensing
