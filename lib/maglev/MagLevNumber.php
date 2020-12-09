@@ -19,7 +19,7 @@ class MagLevNumber extends MagLevAny {
 	 * @return MagLevNumber
 	 */
 	public static function fromFloat ($value) {
-		#/src/maglev/MagLev.hx:525: characters 9-39
+		#/src/maglev/MagLev.hx:548: characters 9-39
 		return new MagLevNumber($value);
 	}
 
@@ -29,7 +29,7 @@ class MagLevNumber extends MagLevAny {
 	 * @return MagLevNumber
 	 */
 	public static function fromInt ($value) {
-		#/src/maglev/MagLev.hx:528: characters 9-39
+		#/src/maglev/MagLev.hx:551: characters 9-39
 		return new MagLevNumber($value);
 	}
 
@@ -37,7 +37,7 @@ class MagLevNumber extends MagLevAny {
 	 * @return int
 	 */
 	public static function getStaticType () {
-		#/src/maglev/MagLev.hx:544: characters 9-17
+		#/src/maglev/MagLev.hx:567: characters 9-17
 		return 4;
 	}
 
@@ -47,9 +47,9 @@ class MagLevNumber extends MagLevAny {
 	 * @return void
 	 */
 	public function __construct ($value) {
-		#/src/maglev/MagLev.hx:531: characters 9-27
+		#/src/maglev/MagLev.hx:554: characters 9-27
 		$this->value = $value;
-		#/src/maglev/MagLev.hx:532: characters 9-16
+		#/src/maglev/MagLev.hx:555: characters 9-16
 		parent::__construct();
 	}
 
@@ -57,7 +57,7 @@ class MagLevNumber extends MagLevAny {
 	 * @return float
 	 */
 	public function getFloat () {
-		#/src/maglev/MagLev.hx:535: characters 9-26
+		#/src/maglev/MagLev.hx:558: characters 9-26
 		return $this->value;
 	}
 
@@ -65,7 +65,7 @@ class MagLevNumber extends MagLevAny {
 	 * @return int
 	 */
 	public function getInt () {
-		#/src/maglev/MagLev.hx:538: characters 16-35
+		#/src/maglev/MagLev.hx:561: characters 16-35
 		return (int)($this->value);
 	}
 
@@ -73,7 +73,7 @@ class MagLevNumber extends MagLevAny {
 	 * @return int
 	 */
 	public function getType () {
-		#/src/maglev/MagLev.hx:541: characters 9-17
+		#/src/maglev/MagLev.hx:564: characters 9-17
 		return 4;
 	}
 
@@ -83,14 +83,14 @@ class MagLevNumber extends MagLevAny {
 	 * @return bool
 	 */
 	public function isEqual ($other) {
-		#/src/maglev/MagLev.hx:547: lines 547-553
+		#/src/maglev/MagLev.hx:570: lines 570-576
 		if ($other->getType() === $this->getType()) {
-			#/src/maglev/MagLev.hx:548: characters 13-47
+			#/src/maglev/MagLev.hx:571: characters 13-47
 			$o = Boot::typedCast(Boot::getClass(MagLevNumber::class), $other);
-			#/src/maglev/MagLev.hx:549: characters 13-46
+			#/src/maglev/MagLev.hx:572: characters 13-46
 			return Boot::equal($this->getFloat(), $o->getFloat());
 		} else {
-			#/src/maglev/MagLev.hx:552: characters 13-25
+			#/src/maglev/MagLev.hx:575: characters 13-25
 			return false;
 		}
 	}
@@ -99,7 +99,7 @@ class MagLevNumber extends MagLevAny {
 	 * @return MagLevString
 	 */
 	public function toJson () {
-		#/src/maglev/MagLev.hx:556: characters 9-51
+		#/src/maglev/MagLev.hx:579: characters 9-51
 		return new MagLevString(\Std::string($this->value));
 	}
 }

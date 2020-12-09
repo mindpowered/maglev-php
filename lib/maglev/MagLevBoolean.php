@@ -19,7 +19,7 @@ class MagLevBoolean extends MagLevAny {
 	 * @return MagLevBoolean
 	 */
 	public static function fromBool ($value) {
-		#/src/maglev/MagLev.hx:599: characters 9-40
+		#/src/maglev/MagLev.hx:622: characters 9-40
 		return new MagLevBoolean($value);
 	}
 
@@ -27,7 +27,7 @@ class MagLevBoolean extends MagLevAny {
 	 * @return int
 	 */
 	public static function getStaticType () {
-		#/src/maglev/MagLev.hx:612: characters 9-17
+		#/src/maglev/MagLev.hx:635: characters 9-17
 		return 2;
 	}
 
@@ -37,9 +37,9 @@ class MagLevBoolean extends MagLevAny {
 	 * @return void
 	 */
 	public function __construct ($value) {
-		#/src/maglev/MagLev.hx:602: characters 9-27
+		#/src/maglev/MagLev.hx:625: characters 9-27
 		$this->value = $value;
-		#/src/maglev/MagLev.hx:603: characters 9-16
+		#/src/maglev/MagLev.hx:626: characters 9-16
 		parent::__construct();
 	}
 
@@ -47,7 +47,7 @@ class MagLevBoolean extends MagLevAny {
 	 * @return bool
 	 */
 	public function getBool () {
-		#/src/maglev/MagLev.hx:606: characters 9-21
+		#/src/maglev/MagLev.hx:629: characters 9-21
 		return $this->value;
 	}
 
@@ -55,7 +55,7 @@ class MagLevBoolean extends MagLevAny {
 	 * @return int
 	 */
 	public function getType () {
-		#/src/maglev/MagLev.hx:609: characters 9-17
+		#/src/maglev/MagLev.hx:632: characters 9-17
 		return 2;
 	}
 
@@ -65,14 +65,14 @@ class MagLevBoolean extends MagLevAny {
 	 * @return bool
 	 */
 	public function isEqual ($other) {
-		#/src/maglev/MagLev.hx:615: lines 615-621
+		#/src/maglev/MagLev.hx:638: lines 638-644
 		if ($other->getType() === $this->getType()) {
-			#/src/maglev/MagLev.hx:616: characters 13-48
+			#/src/maglev/MagLev.hx:639: characters 13-48
 			$o = Boot::typedCast(Boot::getClass(MagLevBoolean::class), $other);
-			#/src/maglev/MagLev.hx:617: characters 13-44
+			#/src/maglev/MagLev.hx:640: characters 13-44
 			return $this->getBool() === $o->getBool();
 		} else {
-			#/src/maglev/MagLev.hx:620: characters 13-25
+			#/src/maglev/MagLev.hx:643: characters 13-25
 			return false;
 		}
 	}
@@ -81,12 +81,12 @@ class MagLevBoolean extends MagLevAny {
 	 * @return MagLevString
 	 */
 	public function toJson () {
-		#/src/maglev/MagLev.hx:624: lines 624-628
+		#/src/maglev/MagLev.hx:647: lines 647-651
 		if ($this->value) {
-			#/src/maglev/MagLev.hx:625: characters 13-44
+			#/src/maglev/MagLev.hx:648: characters 13-44
 			return new MagLevString("true");
 		} else {
-			#/src/maglev/MagLev.hx:627: characters 13-45
+			#/src/maglev/MagLev.hx:650: characters 13-45
 			return new MagLevString("false");
 		}
 	}

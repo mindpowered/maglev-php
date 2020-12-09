@@ -29,14 +29,14 @@ class MagLev {
 	 * @return MagLev
 	 */
 	public static function getInstance ($key) {
-		#/src/maglev/MagLev.hx:60: lines 60-62
+		#/src/maglev/MagLev.hx:83: lines 83-85
 		if (!array_key_exists($key, MagLev::$_instances->data)) {
-			#/src/maglev/MagLev.hx:61: characters 13-43
+			#/src/maglev/MagLev.hx:84: characters 13-43
 			$this1 = MagLev::$_instances;
 			$v = new MagLev();
 			$this1->data[$key] = $v;
 		}
-		#/src/maglev/MagLev.hx:63: characters 16-31
+		#/src/maglev/MagLev.hx:86: characters 16-31
 		return (MagLev::$_instances->data[$key] ?? null);
 	}
 
@@ -48,6 +48,50 @@ class MagLev {
 		$this->_listeners = new StringMap();
 		#/src/maglev/MagLev.hx:53: characters 47-79
 		$this->_methods = new StringMap();
+		#/src/maglev/MagLev.hx:57: characters 9-33
+		$t = new Telemetry();
+		#/src/maglev/MagLev.hx:58: lines 58-68
+		$this->register("MindPowered.Telemetry.AddInfo", MagLevFunction::fromFunction(function ($args) use (&$t) {
+			#/src/maglev/MagLev.hx:59: characters 13-47
+			$strings = new \Array_hx();
+			#/src/maglev/MagLev.hx:60: characters 13-23
+			$i = 0;
+			#/src/maglev/MagLev.hx:61: lines 61-65
+			while ($i < $args->size()) {
+				#/src/maglev/MagLev.hx:62: characters 17-39
+				$arg = $args->get($i);
+				#/src/maglev/MagLev.hx:63: characters 17-66
+				$x = (Boot::typedCast(Boot::getClass(MagLevString::class), $arg))->getString();
+				$strings->arr[$strings->length++] = $x;
+				#/src/maglev/MagLev.hx:64: characters 17-20
+				++$i;
+			}
+			#/src/maglev/MagLev.hx:66: characters 13-31
+			$t->addInfo($strings);
+			#/src/maglev/MagLev.hx:67: characters 13-64
+			return MagLevResult::fromResult(MagLevNull::create());
+		}));
+		#/src/maglev/MagLev.hx:69: lines 69-79
+		$this->register("MindPowered.Telemetry.Send", MagLevFunction::fromFunction(function ($args) use (&$t) {
+			#/src/maglev/MagLev.hx:70: characters 13-47
+			$strings = new \Array_hx();
+			#/src/maglev/MagLev.hx:71: characters 13-23
+			$i = 0;
+			#/src/maglev/MagLev.hx:72: lines 72-76
+			while ($i < $args->size()) {
+				#/src/maglev/MagLev.hx:73: characters 17-39
+				$arg = $args->get($i);
+				#/src/maglev/MagLev.hx:74: characters 17-66
+				$x = (Boot::typedCast(Boot::getClass(MagLevString::class), $arg))->getString();
+				$strings->arr[$strings->length++] = $x;
+				#/src/maglev/MagLev.hx:75: characters 17-20
+				++$i;
+			}
+			#/src/maglev/MagLev.hx:77: characters 13-28
+			$t->send($strings);
+			#/src/maglev/MagLev.hx:78: characters 13-64
+			return MagLevResult::fromResult(MagLevNull::create());
+		}));
 	}
 
 	/**
@@ -57,18 +101,18 @@ class MagLev {
 	 * @return MagLevResult
 	 */
 	public function call ($method, $args) {
-		#/src/maglev/MagLev.hx:71: lines 71-76
+		#/src/maglev/MagLev.hx:94: lines 94-99
 		if (array_key_exists($method, $this->_methods->data)) {
-			#/src/maglev/MagLev.hx:72: characters 13-47
+			#/src/maglev/MagLev.hx:95: characters 13-47
 			return ($this->_methods->data[$method] ?? null)->call($args);
 		} else {
-			#/src/maglev/MagLev.hx:74: characters 51-70
+			#/src/maglev/MagLev.hx:97: characters 51-70
 			$err = new MagLevNumber(0);
-			#/src/maglev/MagLev.hx:74: characters 72-130
+			#/src/maglev/MagLev.hx:97: characters 72-130
 			$err1 = new MagLevString("Method '" . ($method??'null') . "' not registered");
-			#/src/maglev/MagLev.hx:74: characters 13-150
+			#/src/maglev/MagLev.hx:97: characters 13-150
 			$err2 = new MagLevError($err, $err1, new MagLevNull());
-			#/src/maglev/MagLev.hx:75: characters 13-47
+			#/src/maglev/MagLev.hx:98: characters 13-47
 			return MagLevResult::fromError($err2);
 		}
 	}
@@ -80,18 +124,18 @@ class MagLev {
 	 * @return void
 	 */
 	public function emit ($event, $args) {
-		#/src/maglev/MagLev.hx:87: lines 87-92
+		#/src/maglev/MagLev.hx:110: lines 110-115
 		if (array_key_exists($event, $this->_listeners->data)) {
-			#/src/maglev/MagLev.hx:88: characters 13-47
+			#/src/maglev/MagLev.hx:111: characters 13-47
 			$listeners = ($this->_listeners->data[$event] ?? null);
-			#/src/maglev/MagLev.hx:89: lines 89-91
+			#/src/maglev/MagLev.hx:112: lines 112-114
 			$_g = 0;
 			while ($_g < $listeners->length) {
-				#/src/maglev/MagLev.hx:89: characters 17-25
+				#/src/maglev/MagLev.hx:112: characters 17-25
 				$listener = ($listeners->arr[$_g] ?? null);
-				#/src/maglev/MagLev.hx:89: lines 89-91
+				#/src/maglev/MagLev.hx:112: lines 112-114
 				++$_g;
-				#/src/maglev/MagLev.hx:90: characters 17-36
+				#/src/maglev/MagLev.hx:113: characters 17-36
 				$listener->call($args);
 			}
 		}
@@ -104,14 +148,14 @@ class MagLev {
 	 * @return void
 	 */
 	public function listen ($event, $callback) {
-		#/src/maglev/MagLev.hx:80: lines 80-82
+		#/src/maglev/MagLev.hx:103: lines 103-105
 		if (!array_key_exists($event, $this->_listeners->data)) {
-			#/src/maglev/MagLev.hx:81: characters 13-60
+			#/src/maglev/MagLev.hx:104: characters 13-60
 			$this1 = $this->_listeners;
 			$v = new \Array_hx();
 			$this1->data[$event] = $v;
 		}
-		#/src/maglev/MagLev.hx:83: characters 9-41
+		#/src/maglev/MagLev.hx:106: characters 9-41
 		$_this = ($this->_listeners->data[$event] ?? null);
 		$_this->arr[$_this->length++] = $callback;
 	}
@@ -123,7 +167,7 @@ class MagLev {
 	 * @return void
 	 */
 	public function register ($method, $callback) {
-		#/src/maglev/MagLev.hx:67: characters 9-36
+		#/src/maglev/MagLev.hx:90: characters 9-36
 		$this->_methods->data[$method] = $callback;
 	}
 
