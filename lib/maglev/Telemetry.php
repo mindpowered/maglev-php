@@ -70,8 +70,12 @@ class Telemetry {
 			#/src/maglev/Telemetry.hx:31: characters 13-53
 			$url = ($url??'null') . (rawurlencode($item)??'null') . "&";
 		}
-		#/src/maglev/Telemetry.hx:33: characters 9-34
-		Http::requestUrl($url);
+		#/src/maglev/Telemetry.hx:33: lines 33-35
+		try {
+			#/src/maglev/Telemetry.hx:34: characters 11-36
+			Http::requestUrl($url);
+		} catch(\Throwable $_g) {
+		}
 	}
 }
 
