@@ -7,6 +7,7 @@ namespace maglev;
 
 use \php\Boot;
 use \haxe\ds\ObjectMap;
+use \haxe\Exception;
 use \php\Lib;
 use \haxe\ds\IntMap;
 use \php\_Boot\HxClosure;
@@ -20,7 +21,7 @@ use \php\_NativeIndexedArray\NativeIndexedArrayIterator;
  */
 class MagLevPhp {
 	/**
-	 * @var MagLevOld
+	 * @var MagLev
 	 */
 	public $maglev;
 
@@ -30,19 +31,19 @@ class MagLevPhp {
 	 * @return MagLevPhp
 	 */
 	public static function getInstance ($phpKey) {
-		#/src/maglev/MagLevPhp.hx:25: characters 5-43
+		#/src/maglev/MagLevPhp.hx:27: characters 5-43
 		$key = Boot::typedCast(Boot::getClass('String'), $phpKey);
-		#/src/maglev/MagLevPhp.hx:26: characters 5-53
-		return new MagLevPhp(MagLevOld::getInstance($key));
+		#/src/maglev/MagLevPhp.hx:28: characters 5-50
+		return new MagLevPhp(MagLev::getInstance($key));
 	}
 
 	/**
-	 * @param MagLevOld $maglev
+	 * @param MagLev $maglev
 	 * 
 	 * @return void
 	 */
 	public function __construct ($maglev) {
-		#/src/maglev/MagLevPhp.hx:20: characters 5-25
+		#/src/maglev/MagLevPhp.hx:22: characters 5-25
 		$this->maglev = $maglev;
 	}
 
@@ -54,17 +55,17 @@ class MagLevPhp {
 	 * @return void
 	 */
 	public function call ($phpMethod, $phpArgs, $phpCallback) {
-		#/src/maglev/MagLevPhp.hx:41: lines 41-49
+		#/src/maglev/MagLevPhp.hx:43: lines 43-51
 		$_gthis = $this;
-		#/src/maglev/MagLevPhp.hx:43: characters 5-42
+		#/src/maglev/MagLevPhp.hx:45: characters 5-42
 		$method = Boot::typedCast(Boot::getClass('String'), $phpMethod);
-		#/src/maglev/MagLevPhp.hx:44: characters 5-59
+		#/src/maglev/MagLevPhp.hx:46: characters 5-59
 		$haxeArgs = $this->convertToHaxe($phpArgs);
-		#/src/maglev/MagLevPhp.hx:45: lines 45-48
-		$this->maglev->call($method, $haxeArgs, function ($haxeResult) use (&$_gthis, &$phpCallback) {
-			#/src/maglev/MagLevPhp.hx:46: characters 9-59
+		#/src/maglev/MagLevPhp.hx:47: lines 47-50
+		$this->old_call($method, $haxeArgs, function ($haxeResult) use (&$_gthis, &$phpCallback) {
+			#/src/maglev/MagLevPhp.hx:48: characters 9-59
 			$phpResult = $_gthis->convertToPhp($haxeResult);
-			#/src/maglev/MagLevPhp.hx:47: characters 9-31
+			#/src/maglev/MagLevPhp.hx:49: characters 9-31
 			$phpCallback($phpResult);
 		});
 	}
@@ -75,86 +76,86 @@ class MagLevPhp {
 	 * @return mixed
 	 */
 	public function convertToHaxe ($data) {
-		#/src/maglev/MagLevPhp.hx:127: lines 127-173
+		#/src/maglev/MagLevPhp.hx:129: lines 129-175
 		$_gthis = $this;
-		#/src/maglev/MagLevPhp.hx:130: characters 5-23
+		#/src/maglev/MagLevPhp.hx:132: characters 5-23
 		$result = $data;
-		#/src/maglev/MagLevPhp.hx:132: lines 132-171
+		#/src/maglev/MagLevPhp.hx:134: lines 134-173
 		if (is_array($data)) {
-			#/src/maglev/MagLevPhp.hx:134: characters 7-49
+			#/src/maglev/MagLevPhp.hx:136: characters 7-49
 			$haxeArray = \Array_hx::wrap($data);
-			#/src/maglev/MagLevPhp.hx:135: characters 7-76
+			#/src/maglev/MagLevPhp.hx:137: characters 7-76
 			$haxeHash = Lib::hashOfAssociativeArray($data);
-			#/src/maglev/MagLevPhp.hx:137: lines 137-149
+			#/src/maglev/MagLevPhp.hx:139: lines 139-151
 			if (Boot::equal(array_values($data), $data)) {
-				#/src/maglev/MagLevPhp.hx:138: characters 9-33
+				#/src/maglev/MagLevPhp.hx:140: characters 9-33
 				$ret = new \Array_hx();
-				#/src/maglev/MagLevPhp.hx:139: lines 139-141
+				#/src/maglev/MagLevPhp.hx:141: lines 141-143
 				$_g = 0;
 				while ($_g < $haxeArray->length) {
-					#/src/maglev/MagLevPhp.hx:139: characters 14-18
+					#/src/maglev/MagLevPhp.hx:141: characters 14-18
 					$item = ($haxeArray->arr[$_g] ?? null);
-					#/src/maglev/MagLevPhp.hx:139: lines 139-141
+					#/src/maglev/MagLevPhp.hx:141: lines 141-143
 					++$_g;
-					#/src/maglev/MagLevPhp.hx:140: characters 11-40
+					#/src/maglev/MagLevPhp.hx:142: characters 11-40
 					$x = $this->convertToHaxe($item);
 					$ret->arr[$ret->length++] = $x;
 				}
-				#/src/maglev/MagLevPhp.hx:142: characters 9-19
+				#/src/maglev/MagLevPhp.hx:144: characters 9-19
 				return $ret;
 			} else {
-				#/src/maglev/MagLevPhp.hx:144: characters 9-59
+				#/src/maglev/MagLevPhp.hx:146: characters 9-59
 				$ret = new StringMap();
-				#/src/maglev/MagLevPhp.hx:145: characters 22-37
+				#/src/maglev/MagLevPhp.hx:147: characters 22-37
 				$item = new NativeIndexedArrayIterator(array_values(array_map("strval", array_keys($haxeHash->data))));
 				while ($item->hasNext()) {
-					#/src/maglev/MagLevPhp.hx:145: lines 145-147
+					#/src/maglev/MagLevPhp.hx:147: lines 147-149
 					$item1 = $item->next();
-					#/src/maglev/MagLevPhp.hx:146: characters 11-55
+					#/src/maglev/MagLevPhp.hx:148: characters 11-55
 					$value = $this->convertToHaxe(($haxeHash->data[$item1] ?? null));
 					$ret->data[$item1] = $value;
 				}
-				#/src/maglev/MagLevPhp.hx:148: characters 9-19
+				#/src/maglev/MagLevPhp.hx:150: characters 9-19
 				return $ret;
 			}
 		} else if (is_string($data)) {
-			#/src/maglev/MagLevPhp.hx:151: characters 7-36
+			#/src/maglev/MagLevPhp.hx:153: characters 7-36
 			$haxeString = $data;
-			#/src/maglev/MagLevPhp.hx:152: characters 7-26
+			#/src/maglev/MagLevPhp.hx:154: characters 7-26
 			$result = $haxeString;
 		} else if (is_callable($data)) {
-			#/src/maglev/MagLevPhp.hx:155: lines 155-169
+			#/src/maglev/MagLevPhp.hx:157: lines 157-171
 			$f = function () use (&$data, &$_gthis) {
-				#/src/maglev/MagLevPhp.hx:157: characters 9-64
+				#/src/maglev/MagLevPhp.hx:159: characters 9-64
 				$nativeArrayOfHaxeArgs = func_get_args();
-				#/src/maglev/MagLevPhp.hx:158: characters 9-67
+				#/src/maglev/MagLevPhp.hx:160: characters 9-67
 				$haxeArgs = \Array_hx::wrap($nativeArrayOfHaxeArgs);
-				#/src/maglev/MagLevPhp.hx:160: characters 9-48
+				#/src/maglev/MagLevPhp.hx:162: characters 9-48
 				$haxeArrayOfPhpArgs = new \Array_hx();
-				#/src/maglev/MagLevPhp.hx:161: lines 161-163
+				#/src/maglev/MagLevPhp.hx:163: lines 163-165
 				$_g = 0;
 				while ($_g < $haxeArgs->length) {
-					#/src/maglev/MagLevPhp.hx:161: characters 14-21
+					#/src/maglev/MagLevPhp.hx:163: characters 14-21
 					$haxeArg = ($haxeArgs->arr[$_g] ?? null);
-					#/src/maglev/MagLevPhp.hx:161: lines 161-163
+					#/src/maglev/MagLevPhp.hx:163: lines 163-165
 					++$_g;
-					#/src/maglev/MagLevPhp.hx:162: characters 11-57
+					#/src/maglev/MagLevPhp.hx:164: characters 11-57
 					$x = $_gthis->convertToPhp($haxeArg);
 					$haxeArrayOfPhpArgs->arr[$haxeArrayOfPhpArgs->length++] = $x;
 				}
-				#/src/maglev/MagLevPhp.hx:164: characters 9-62
+				#/src/maglev/MagLevPhp.hx:166: characters 9-62
 				$phpArgs = $haxeArrayOfPhpArgs->arr;
-				#/src/maglev/MagLevPhp.hx:165: characters 9-72
+				#/src/maglev/MagLevPhp.hx:167: characters 9-72
 				$phpResult = call_user_func_array($data, $phpArgs);
-				#/src/maglev/MagLevPhp.hx:167: characters 9-51
+				#/src/maglev/MagLevPhp.hx:169: characters 9-51
 				$haxeResult = $_gthis->convertToHaxe($phpResult);
-				#/src/maglev/MagLevPhp.hx:168: characters 9-26
+				#/src/maglev/MagLevPhp.hx:170: characters 9-26
 				return $haxeResult;
 			};
-			#/src/maglev/MagLevPhp.hx:170: characters 7-17
+			#/src/maglev/MagLevPhp.hx:172: characters 7-17
 			$result = $f;
 		}
-		#/src/maglev/MagLevPhp.hx:172: characters 5-18
+		#/src/maglev/MagLevPhp.hx:174: characters 5-18
 		return $result;
 	}
 
@@ -164,94 +165,94 @@ class MagLevPhp {
 	 * @return mixed
 	 */
 	public function convertToPhp ($data) {
-		#/src/maglev/MagLevPhp.hx:70: lines 70-125
+		#/src/maglev/MagLevPhp.hx:72: lines 72-127
 		$_gthis = $this;
-		#/src/maglev/MagLevPhp.hx:73: characters 5-23
+		#/src/maglev/MagLevPhp.hx:75: characters 5-23
 		$result = $data;
-		#/src/maglev/MagLevPhp.hx:75: lines 75-123
+		#/src/maglev/MagLevPhp.hx:77: lines 77-125
 		if (($data instanceof \Array_hx)) {
-			#/src/maglev/MagLevPhp.hx:76: characters 7-38
+			#/src/maglev/MagLevPhp.hx:78: characters 7-38
 			$original = $data;
-			#/src/maglev/MagLevPhp.hx:77: characters 7-31
+			#/src/maglev/MagLevPhp.hx:79: characters 7-31
 			$arr = new \Array_hx();
-			#/src/maglev/MagLevPhp.hx:78: characters 19-38
+			#/src/maglev/MagLevPhp.hx:80: characters 19-38
 			$_g_current = 0;
 			$_g_array = $original;
-			#/src/maglev/MagLevPhp.hx:78: lines 78-80
+			#/src/maglev/MagLevPhp.hx:80: lines 80-82
 			while ($_g_current < $_g_array->length) {
 				$item = ($_g_array->arr[$_g_current++] ?? null);
-				#/src/maglev/MagLevPhp.hx:79: characters 9-37
+				#/src/maglev/MagLevPhp.hx:81: characters 9-37
 				$x = $this->convertToPhp($item);
 				$arr->arr[$arr->length++] = $x;
 			}
-			#/src/maglev/MagLevPhp.hx:81: characters 7-13
+			#/src/maglev/MagLevPhp.hx:83: characters 7-13
 			$result = $arr->arr;
 		} else if (($data instanceof StringMap) || ($data instanceof IntMap) || ($data instanceof EnumValueMap) || ($data instanceof ObjectMap)) {
-			#/src/maglev/MagLevPhp.hx:87: characters 7-61
+			#/src/maglev/MagLevPhp.hx:89: characters 7-61
 			$original = $data;
-			#/src/maglev/MagLevPhp.hx:88: characters 7-58
+			#/src/maglev/MagLevPhp.hx:90: characters 7-58
 			$hash = new StringMap();
-			#/src/maglev/MagLevPhp.hx:89: characters 19-34
+			#/src/maglev/MagLevPhp.hx:91: characters 19-34
 			$item = $original->keys();
 			while ($item->hasNext()) {
-				#/src/maglev/MagLevPhp.hx:89: lines 89-91
+				#/src/maglev/MagLevPhp.hx:91: lines 91-93
 				$item1 = $item->next();
-				#/src/maglev/MagLevPhp.hx:90: characters 9-57
+				#/src/maglev/MagLevPhp.hx:92: characters 9-57
 				$value = $this->convertToPhp($original->get($item1));
 				$hash->data[$item1] = $value;
 			}
-			#/src/maglev/MagLevPhp.hx:92: characters 7-13
+			#/src/maglev/MagLevPhp.hx:94: characters 7-13
 			$result = $hash->data;
 		} else if (is_string($data)) {
-			#/src/maglev/MagLevPhp.hx:95: characters 7-45
+			#/src/maglev/MagLevPhp.hx:97: characters 7-45
 			$phpString = $data;
-			#/src/maglev/MagLevPhp.hx:96: characters 7-13
+			#/src/maglev/MagLevPhp.hx:98: characters 7-13
 			$result = $phpString;
 		} else {
-			#/src/maglev/MagLevPhp.hx:98: characters 14-38
+			#/src/maglev/MagLevPhp.hx:100: characters 14-38
 			$f = $data;
-			#/src/maglev/MagLevPhp.hx:98: lines 98-123
+			#/src/maglev/MagLevPhp.hx:100: lines 100-125
 			if (($f instanceof \Closure) || ($f instanceof HxClosure)) {
-				#/src/maglev/MagLevPhp.hx:100: lines 100-112
+				#/src/maglev/MagLevPhp.hx:102: lines 102-114
 				$f = function () use (&$data, &$_gthis) {
-					#/src/maglev/MagLevPhp.hx:102: characters 9-50
+					#/src/maglev/MagLevPhp.hx:104: characters 9-50
 					$phpArgs = func_get_args();
-					#/src/maglev/MagLevPhp.hx:104: characters 9-47
+					#/src/maglev/MagLevPhp.hx:106: characters 9-47
 					$haxeArgs = $_gthis->convertToHaxe($phpArgs);
-					#/src/maglev/MagLevPhp.hx:106: characters 9-71
+					#/src/maglev/MagLevPhp.hx:108: characters 9-71
 					$phpArrayContainingHaxeArgs = $haxeArgs->arr;
-					#/src/maglev/MagLevPhp.hx:108: characters 9-92
+					#/src/maglev/MagLevPhp.hx:110: characters 9-92
 					$haxeResult = call_user_func_array($data, $phpArrayContainingHaxeArgs);
-					#/src/maglev/MagLevPhp.hx:110: characters 9-50
+					#/src/maglev/MagLevPhp.hx:112: characters 9-50
 					$phpResult = $_gthis->convertToPhp($haxeResult);
-					#/src/maglev/MagLevPhp.hx:111: characters 9-25
+					#/src/maglev/MagLevPhp.hx:113: characters 9-25
 					return $phpResult;
 				};
-				#/src/maglev/MagLevPhp.hx:113: characters 7-13
+				#/src/maglev/MagLevPhp.hx:115: characters 7-13
 				$result = $f;
 			} else if (\Reflect::isObject($data)) {
-				#/src/maglev/MagLevPhp.hx:116: characters 9-60
+				#/src/maglev/MagLevPhp.hx:118: characters 9-60
 				$hash = new StringMap();
-				#/src/maglev/MagLevPhp.hx:117: characters 9-29
+				#/src/maglev/MagLevPhp.hx:119: characters 9-29
 				$original = $data;
-				#/src/maglev/MagLevPhp.hx:118: lines 118-121
+				#/src/maglev/MagLevPhp.hx:120: lines 120-123
 				$_g = 0;
 				$_g1 = \Reflect::fields($original);
 				while ($_g < $_g1->length) {
-					#/src/maglev/MagLevPhp.hx:118: characters 14-19
+					#/src/maglev/MagLevPhp.hx:120: characters 14-19
 					$field = ($_g1->arr[$_g] ?? null);
-					#/src/maglev/MagLevPhp.hx:118: lines 118-121
+					#/src/maglev/MagLevPhp.hx:120: lines 120-123
 					++$_g;
-					#/src/maglev/MagLevPhp.hx:119: characters 13-60
+					#/src/maglev/MagLevPhp.hx:121: characters 13-60
 					$val = \Reflect::getProperty($original, $field);
-					#/src/maglev/MagLevPhp.hx:120: characters 13-30
+					#/src/maglev/MagLevPhp.hx:122: characters 13-30
 					$hash->data[$field] = $val;
 				}
-				#/src/maglev/MagLevPhp.hx:122: characters 9-15
+				#/src/maglev/MagLevPhp.hx:124: characters 9-15
 				$result = $this->convertToPhp($hash);
 			}
 		}
-		#/src/maglev/MagLevPhp.hx:124: characters 5-18
+		#/src/maglev/MagLevPhp.hx:126: characters 5-18
 		return $result;
 	}
 
@@ -261,19 +262,19 @@ class MagLevPhp {
 	 * @return \Array_hx
 	 */
 	public function dynamicArrayToAnyArray ($arr) {
-		#/src/maglev/MagLevPhp.hx:176: characters 5-33
+		#/src/maglev/MagLevPhp.hx:178: characters 5-33
 		$results = new \Array_hx();
-		#/src/maglev/MagLevPhp.hx:177: lines 177-179
+		#/src/maglev/MagLevPhp.hx:179: lines 179-181
 		$_g = 0;
 		while ($_g < $arr->length) {
-			#/src/maglev/MagLevPhp.hx:177: characters 10-11
+			#/src/maglev/MagLevPhp.hx:179: characters 10-11
 			$a = ($arr->arr[$_g] ?? null);
-			#/src/maglev/MagLevPhp.hx:177: lines 177-179
+			#/src/maglev/MagLevPhp.hx:179: lines 179-181
 			++$_g;
-			#/src/maglev/MagLevPhp.hx:178: characters 7-22
+			#/src/maglev/MagLevPhp.hx:180: characters 7-22
 			$results->arr[$results->length++] = $a;
 		}
-		#/src/maglev/MagLevPhp.hx:180: characters 5-19
+		#/src/maglev/MagLevPhp.hx:182: characters 5-19
 		return $results;
 	}
 
@@ -284,12 +285,12 @@ class MagLevPhp {
 	 * @return void
 	 */
 	public function emit ($event, $phpArgs) {
-		#/src/maglev/MagLevPhp.hx:65: characters 5-84
+		#/src/maglev/MagLevPhp.hx:67: characters 5-84
 		$haxeArgs = $this->dynamicArrayToAnyArray(\Array_hx::wrap($phpArgs));
-		#/src/maglev/MagLevPhp.hx:66: characters 5-40
+		#/src/maglev/MagLevPhp.hx:68: characters 5-40
 		$eventStr = Boot::typedCast(Boot::getClass('String'), $event);
-		#/src/maglev/MagLevPhp.hx:67: characters 5-41
-		$this->maglev->emit($eventStr, $haxeArgs);
+		#/src/maglev/MagLevPhp.hx:69: characters 5-38
+		$this->old_emit($eventStr, $haxeArgs);
 	}
 
 	/**
@@ -299,17 +300,314 @@ class MagLevPhp {
 	 * @return void
 	 */
 	public function listen ($phpEvent, $phpCallback) {
-		#/src/maglev/MagLevPhp.hx:54: characters 5-47
+		#/src/maglev/MagLevPhp.hx:56: characters 5-47
 		$event = Boot::typedCast(Boot::getClass('String'), $phpEvent);
-		#/src/maglev/MagLevPhp.hx:55: lines 55-58
+		#/src/maglev/MagLevPhp.hx:57: lines 57-60
 		$haxeCallback = function ($event, $haxeArgs) use (&$phpCallback) {
-			#/src/maglev/MagLevPhp.hx:56: characters 7-50
+			#/src/maglev/MagLevPhp.hx:58: characters 7-50
 			$phpArgs = $haxeArgs->arr;
-			#/src/maglev/MagLevPhp.hx:57: characters 7-34
+			#/src/maglev/MagLevPhp.hx:59: characters 7-34
 			$phpCallback($event, $phpArgs);
 		};
-		#/src/maglev/MagLevPhp.hx:59: characters 5-44
-		$this->maglev->listen($event, $haxeCallback);
+		#/src/maglev/MagLevPhp.hx:61: characters 5-41
+		$this->old_listen($event, $haxeCallback);
+	}
+
+	/**
+	 * @param string $method
+	 * @param \Array_hx $args
+	 * @param \Closure $callback
+	 * 
+	 * @return void
+	 */
+	public function old_call ($method, $args, $callback) {
+		#/src/maglev/MagLevPhp.hx:200: lines 200-213
+		$_gthis = $this;
+		#/src/maglev/MagLevPhp.hx:201: characters 11-54
+		$myargs = new MagLevArray();
+		#/src/maglev/MagLevPhp.hx:202: lines 202-204
+		$_g = 0;
+		while ($_g < $args->length) {
+			#/src/maglev/MagLevPhp.hx:202: characters 16-19
+			$arg = ($args->arr[$_g] ?? null);
+			#/src/maglev/MagLevPhp.hx:202: lines 202-204
+			++$_g;
+			#/src/maglev/MagLevPhp.hx:203: characters 15-52
+			$myargs->push($this->old_convertToMagLev($arg));
+		}
+		#/src/maglev/MagLevPhp.hx:205: characters 11-72
+		$myresult = $this->maglev->call($method, $myargs);
+		#/src/maglev/MagLevPhp.hx:206: lines 206-208
+		$myresult->onError(function ($error) {
+			#/src/maglev/MagLevPhp.hx:207: characters 15-20
+			throw Exception::thrown($error->getMessage());
+		});
+		#/src/maglev/MagLevPhp.hx:209: lines 209-212
+		$myresult->onResult(function ($result) use (&$_gthis, &$callback) {
+			#/src/maglev/MagLevPhp.hx:210: characters 15-50
+			$callback($_gthis->old_convertToHaxe($result));
+			#/src/maglev/MagLevPhp.hx:211: characters 15-66
+			return MagLevResult::fromResult(MagLevNull::create());
+		});
+	}
+
+	/**
+	 * @param MagLevAny $x
+	 * 
+	 * @return mixed
+	 */
+	public function old_convertToHaxe ($x) {
+		#/src/maglev/MagLevPhp.hx:240: lines 240-279
+		if ($x->getType() === MagLevNull::getStaticType()) {
+			#/src/maglev/MagLevPhp.hx:241: characters 15-26
+			return null;
+		} else if ($x->getType() === MagLevBoolean::getStaticType()) {
+			#/src/maglev/MagLevPhp.hx:244: characters 15-46
+			$y = Boot::typedCast(Boot::getClass(MagLevBoolean::class), $x);
+			#/src/maglev/MagLevPhp.hx:245: characters 15-33
+			return $y->getBool();
+		} else if ($x->getType() === MagLevString::getStaticType()) {
+			#/src/maglev/MagLevPhp.hx:248: characters 15-45
+			$y = Boot::typedCast(Boot::getClass(MagLevString::class), $x);
+			#/src/maglev/MagLevPhp.hx:249: characters 15-35
+			return $y->getString();
+		} else if ($x->getType() === MagLevNumber::getStaticType()) {
+			#/src/maglev/MagLevPhp.hx:252: characters 15-45
+			$y = Boot::typedCast(Boot::getClass(MagLevNumber::class), $x);
+			#/src/maglev/MagLevPhp.hx:253: characters 15-34
+			return $y->getFloat();
+		} else if ($x->getType() === MagLevArray::getStaticType()) {
+			#/src/maglev/MagLevPhp.hx:256: characters 15-44
+			$y = Boot::typedCast(Boot::getClass(MagLevArray::class), $x);
+			#/src/maglev/MagLevPhp.hx:257: characters 15-53
+			$arr = new \Array_hx();
+			#/src/maglev/MagLevPhp.hx:258: characters 15-25
+			$i = 0;
+			#/src/maglev/MagLevPhp.hx:259: lines 259-262
+			while ($i < $y->size()) {
+				#/src/maglev/MagLevPhp.hx:260: characters 19-56
+				$x1 = $this->old_convertToHaxe($y->get($i));
+				$arr->arr[$arr->length++] = $x1;
+				#/src/maglev/MagLevPhp.hx:261: characters 19-22
+				++$i;
+			}
+			#/src/maglev/MagLevPhp.hx:263: characters 15-25
+			return $arr;
+		} else if ($x->getType() === MagLevObject::getStaticType()) {
+			#/src/maglev/MagLevPhp.hx:266: characters 15-45
+			$y = Boot::typedCast(Boot::getClass(MagLevObject::class), $x);
+			#/src/maglev/MagLevPhp.hx:267: characters 15-63
+			$map = new StringMap();
+			#/src/maglev/MagLevPhp.hx:268: characters 15-35
+			$keys = $y->keys();
+			#/src/maglev/MagLevPhp.hx:269: characters 15-25
+			$i = 0;
+			#/src/maglev/MagLevPhp.hx:270: lines 270-274
+			while ($i < $keys->size()) {
+				#/src/maglev/MagLevPhp.hx:271: characters 19-80
+				$key = (Boot::typedCast(Boot::getClass(MagLevString::class), $keys->get($i)))->getString();
+				#/src/maglev/MagLevPhp.hx:272: characters 19-62
+				$value = $this->old_convertToHaxe($y->get($key));
+				$map->data[$key] = $value;
+				#/src/maglev/MagLevPhp.hx:273: characters 19-22
+				++$i;
+			}
+			#/src/maglev/MagLevPhp.hx:275: characters 15-25
+			return $map;
+		} else {
+			#/src/maglev/MagLevPhp.hx:278: characters 15-20
+			throw Exception::thrown("convertToHaxe: unknown type");
+		}
+	}
+
+	/**
+	 * @param mixed $x
+	 * 
+	 * @return MagLevAny
+	 */
+	public function old_convertToMagLev ($x) {
+		#/src/maglev/MagLevPhp.hx:282: lines 282-334
+		$_gthis = $this;
+		#/src/maglev/MagLevPhp.hx:283: lines 283-333
+		if ($x === null) {
+			#/src/maglev/MagLevPhp.hx:284: characters 15-41
+			return MagLevNull::create();
+		} else if (is_bool($x)) {
+			#/src/maglev/MagLevPhp.hx:287: characters 15-59
+			return MagLevBoolean::fromBool(Boot::typedCast(Boot::getClass('Bool'), $x));
+		} else if (is_string($x)) {
+			#/src/maglev/MagLevPhp.hx:290: characters 15-62
+			return MagLevString::fromString(Boot::typedCast(Boot::getClass('String'), $x));
+		} else if (Boot::isOfType($x, Boot::getClass('Int'))) {
+			#/src/maglev/MagLevPhp.hx:293: characters 15-56
+			return MagLevNumber::fromInt(Boot::typedCast(Boot::getClass('Int'), $x));
+		} else if ((is_float($x) || is_int($x))) {
+			#/src/maglev/MagLevPhp.hx:296: characters 15-47
+			return MagLevNumber::fromFloat($x);
+		} else {
+			#/src/maglev/MagLevPhp.hx:298: characters 20-41
+			$f = $x;
+			#/src/maglev/MagLevPhp.hx:298: lines 298-333
+			if (($f instanceof \Closure) || ($f instanceof HxClosure)) {
+				#/src/maglev/MagLevPhp.hx:299: lines 299-304
+				$f = function ($args) use (&$x, &$_gthis) {
+					#/src/maglev/MagLevPhp.hx:300: characters 19-38
+					$y = $x;
+					#/src/maglev/MagLevPhp.hx:301: characters 19-58
+					$haxeArgs = $_gthis->old_convertToHaxe($args);
+					#/src/maglev/MagLevPhp.hx:302: characters 19-45
+					$haxeRet = $y($haxeArgs);
+					#/src/maglev/MagLevPhp.hx:303: characters 19-79
+					return MagLevResult::fromResult($_gthis->old_convertToMagLev($haxeRet));
+				};
+				#/src/maglev/MagLevPhp.hx:305: characters 15-52
+				return MagLevFunction::fromFunction($f);
+			} else if (($x instanceof \Array_hx)) {
+				#/src/maglev/MagLevPhp.hx:308: characters 15-58
+				$arr = MagLevArray::create();
+				#/src/maglev/MagLevPhp.hx:309: characters 15-36
+				$y = $x;
+				#/src/maglev/MagLevPhp.hx:310: lines 310-312
+				$_g = 0;
+				while ($_g < $y->length) {
+					#/src/maglev/MagLevPhp.hx:310: characters 19-23
+					$item = ($y->arr[$_g] ?? null);
+					#/src/maglev/MagLevPhp.hx:310: lines 310-312
+					++$_g;
+					#/src/maglev/MagLevPhp.hx:311: characters 19-54
+					$arr->push($this->old_convertToMagLev($item));
+				}
+				#/src/maglev/MagLevPhp.hx:313: characters 15-25
+				return $arr;
+			} else if (($x instanceof StringMap)) {
+				#/src/maglev/MagLevPhp.hx:316: characters 15-43
+				$map = $x;
+				#/src/maglev/MagLevPhp.hx:317: characters 15-60
+				$obj = MagLevObject::create();
+				#/src/maglev/MagLevPhp.hx:318: characters 26-36
+				$key = new NativeIndexedArrayIterator(array_values(array_map("strval", array_keys($map->data))));
+				while ($key->hasNext()) {
+					#/src/maglev/MagLevPhp.hx:318: lines 318-320
+					$key1 = $key->next();
+					#/src/maglev/MagLevPhp.hx:319: characters 19-66
+					$obj->set($key1, $this->old_convertToMagLev(($map->data[$key1] ?? null)));
+				}
+				#/src/maglev/MagLevPhp.hx:321: characters 15-25
+				return $obj;
+			} else if (\Reflect::isObject($x)) {
+				#/src/maglev/MagLevPhp.hx:324: characters 15-60
+				$obj = MagLevObject::create();
+				#/src/maglev/MagLevPhp.hx:325: lines 325-328
+				$_g = 0;
+				$_g1 = \Reflect::fields($x);
+				while ($_g < $_g1->length) {
+					#/src/maglev/MagLevPhp.hx:325: characters 20-25
+					$field = ($_g1->arr[$_g] ?? null);
+					#/src/maglev/MagLevPhp.hx:325: lines 325-328
+					++$_g;
+					#/src/maglev/MagLevPhp.hx:326: characters 19-59
+					$val = \Reflect::getProperty($x, $field);
+					#/src/maglev/MagLevPhp.hx:327: characters 19-59
+					$obj->set($field, $this->old_convertToMagLev($val));
+				}
+				#/src/maglev/MagLevPhp.hx:329: characters 15-25
+				return $obj;
+			} else {
+				#/src/maglev/MagLevPhp.hx:332: characters 15-20
+				throw Exception::thrown("convertToMagLev: unknown type");
+			}
+		}
+	}
+
+	/**
+	 * @param string $event
+	 * @param \Array_hx $args
+	 * 
+	 * @return void
+	 */
+	public function old_emit ($event, $args) {
+		#/src/maglev/MagLevPhp.hx:232: characters 11-54
+		$myargs = new MagLevArray();
+		#/src/maglev/MagLevPhp.hx:233: lines 233-235
+		$_g = 0;
+		while ($_g < $args->length) {
+			#/src/maglev/MagLevPhp.hx:233: characters 16-19
+			$arg = ($args->arr[$_g] ?? null);
+			#/src/maglev/MagLevPhp.hx:233: lines 233-235
+			++$_g;
+			#/src/maglev/MagLevPhp.hx:234: characters 15-52
+			$myargs->push($this->old_convertToMagLev($arg));
+		}
+		#/src/maglev/MagLevPhp.hx:236: characters 5-36
+		$this->maglev->emit($event, $myargs);
+	}
+
+	/**
+	 * @param string $event
+	 * @param \Closure $callback
+	 * 
+	 * @return void
+	 */
+	public function old_listen ($event, $callback) {
+		#/src/maglev/MagLevPhp.hx:215: lines 215-229
+		$_gthis = $this;
+		#/src/maglev/MagLevPhp.hx:217: lines 217-226
+		$mysub = function ($args) use (&$event, &$_gthis, &$callback) {
+			#/src/maglev/MagLevPhp.hx:218: characters 15-54
+			$arr = new \Array_hx();
+			#/src/maglev/MagLevPhp.hx:219: characters 15-25
+			$i = 0;
+			#/src/maglev/MagLevPhp.hx:220: lines 220-223
+			while ($i < $args->size()) {
+				#/src/maglev/MagLevPhp.hx:221: characters 19-59
+				$x = $_gthis->old_convertToHaxe($args->get($i));
+				$arr->arr[$arr->length++] = $x;
+				#/src/maglev/MagLevPhp.hx:222: characters 19-22
+				++$i;
+			}
+			#/src/maglev/MagLevPhp.hx:224: characters 15-35
+			$callback($event, $arr);
+			#/src/maglev/MagLevPhp.hx:225: characters 15-26
+			return null;
+		};
+		#/src/maglev/MagLevPhp.hx:227: characters 11-69
+		$mycallback = new MagLevFunction($mysub);
+		#/src/maglev/MagLevPhp.hx:228: characters 11-48
+		$this->maglev->listen($event, $mycallback);
+	}
+
+	/**
+	 * @param string $method
+	 * @param \Closure $callback
+	 * 
+	 * @return void
+	 */
+	public function old_register ($method, $callback) {
+		#/src/maglev/MagLevPhp.hx:185: lines 185-198
+		$_gthis = $this;
+		#/src/maglev/MagLevPhp.hx:186: lines 186-195
+		$myfunc = function ($args) use (&$_gthis, &$callback) {
+			#/src/maglev/MagLevPhp.hx:187: characters 15-53
+			$arr = new \Array_hx();
+			#/src/maglev/MagLevPhp.hx:188: characters 15-25
+			$i = 0;
+			#/src/maglev/MagLevPhp.hx:189: lines 189-192
+			while ($i < $args->size()) {
+				#/src/maglev/MagLevPhp.hx:190: characters 19-55
+				$x = $_gthis->convertToHaxe($args->get($i));
+				$arr->arr[$arr->length++] = $x;
+				#/src/maglev/MagLevPhp.hx:191: characters 19-22
+				++$i;
+			}
+			#/src/maglev/MagLevPhp.hx:193: characters 15-73
+			$result = $_gthis->old_convertToMagLev($callback($arr));
+			#/src/maglev/MagLevPhp.hx:194: characters 15-53
+			return MagLevResult::fromResult($result);
+		};
+		#/src/maglev/MagLevPhp.hx:196: characters 11-70
+		$mycallback = new MagLevFunction($myfunc);
+		#/src/maglev/MagLevPhp.hx:197: characters 5-45
+		$this->maglev->register($method, $mycallback);
 	}
 
 	/**
@@ -319,23 +617,23 @@ class MagLevPhp {
 	 * @return void
 	 */
 	public function register ($phpMethod, $phpCallback) {
-		#/src/maglev/MagLevPhp.hx:29: lines 29-39
+		#/src/maglev/MagLevPhp.hx:31: lines 31-41
 		$_gthis = $this;
-		#/src/maglev/MagLevPhp.hx:31: lines 31-36
+		#/src/maglev/MagLevPhp.hx:33: lines 33-38
 		$haxeCallback = function ($haxeArgs) use (&$_gthis, &$phpCallback) {
-			#/src/maglev/MagLevPhp.hx:32: characters 7-49
+			#/src/maglev/MagLevPhp.hx:34: characters 7-49
 			$phpArgs = $_gthis->convertToPhp($haxeArgs);
-			#/src/maglev/MagLevPhp.hx:33: characters 7-48
+			#/src/maglev/MagLevPhp.hx:35: characters 7-48
 			$phpResult = $phpCallback($phpArgs);
-			#/src/maglev/MagLevPhp.hx:34: characters 7-58
+			#/src/maglev/MagLevPhp.hx:36: characters 7-58
 			$haxeResult = $_gthis->convertToHaxe($phpResult);
-			#/src/maglev/MagLevPhp.hx:35: characters 7-24
+			#/src/maglev/MagLevPhp.hx:37: characters 7-24
 			return $haxeResult;
 		};
-		#/src/maglev/MagLevPhp.hx:37: characters 5-49
+		#/src/maglev/MagLevPhp.hx:39: characters 5-49
 		$method = Boot::typedCast(Boot::getClass('String'), $phpMethod);
-		#/src/maglev/MagLevPhp.hx:38: characters 5-47
-		$this->maglev->register($method, $haxeCallback);
+		#/src/maglev/MagLevPhp.hx:40: characters 5-44
+		$this->old_register($method, $haxeCallback);
 	}
 }
 
