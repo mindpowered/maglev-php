@@ -593,8 +593,8 @@ class MagLevPhp {
 			$i = 0;
 			#/src/maglev/MagLevPhp.hx:189: lines 189-192
 			while ($i < $args->size()) {
-				#/src/maglev/MagLevPhp.hx:190: characters 19-55
-				$x = $_gthis->convertToHaxe($args->get($i));
+				#/src/maglev/MagLevPhp.hx:190: characters 19-59
+				$x = $_gthis->old_convertToHaxe($args->get($i));
 				$arr->arr[$arr->length++] = $x;
 				#/src/maglev/MagLevPhp.hx:191: characters 19-22
 				++$i;
