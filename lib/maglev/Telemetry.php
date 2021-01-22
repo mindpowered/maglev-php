@@ -48,7 +48,7 @@ class Telemetry {
 	 */
 	public function send ($args) {
 		#/src/maglev/Telemetry.hx:26: characters 9-68
-		$url = "https://telemetry.mindpowered.dev/send?";
+		$url = "http://telemetry.mindpowered.link/send?";
 		#/src/maglev/Telemetry.hx:27: lines 27-29
 		$_g = 0;
 		$_g1 = $this->info;
