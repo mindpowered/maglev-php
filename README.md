@@ -1,6 +1,9 @@
 
 maglev
 ======
+internal bus
+
+![Build Status](https://mindpowered.dev/assets/images/github-badges/build-passing.svg)
 
 Contents
 ========
@@ -16,9 +19,7 @@ Contents
 - Documentation: [https://mindpowered.github.io/maglev-php](https://mindpowered.github.io/maglev-php)
 
 # Licensing
-This package is dual-licensed under the MIT and CPAL-1.0 licenses.
-
-To obtain a version licensed under the MIT License, follow the instructions at [get a license][purchase].
+To obtain a version of this package under the MIT License, follow the instructions to [get a license][purchase]. The MIT License has no restrictions on commercial use and permits reuse within proprietary software.
 
 # Requirements
 - php >= 7
@@ -47,12 +48,10 @@ Now you can run the command to update composer: `composer update`. In order for 
 We are here to support using this package. If it doesn't do what you're looking for, isn't working, or you just need help, please [Contact us][contact].
 
 There is also a public [Issue Tracker][bugs] available for this package.
-  
-  
-![Documentation - PHP README - maglev](https://www.google-analytics.com/collect?v=1&tid=UA-178768904-1&cid=555&aip=1&t=event&ec=Documentation&ea=PHP+README&el=maglev)
+
 
 
 [bugs]: https://github.com/mindpowered/maglev-php/issues
-[contact]: https://mindpowered.dev/support.html?ref=maglev-php/
+[contact]: https://mindpowered.dev/support/?ref=maglev-php/
 [licensing]: https://mindpowered.dev/?ref=maglev-php
-[purchase]: https://mindpowered.dev/purchase/maglev-php
+[purchase]: https://mindpowered.dev/purchase/
