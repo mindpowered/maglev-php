@@ -1,8 +1,8 @@
 {
     "name": "mindpowered/maglev",
-    "version": "0.7.20",
-    "description": "internal bus",
-    "license": "BSD-3-Clause",
+    "version": "0.7.21",
+    "description": "Internal Communication Bus",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "haxe\\": "lib/haxe/",
